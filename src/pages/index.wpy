@@ -43,6 +43,7 @@
       <button @tap="tap" size="mini">混合TAP事件</button>
       <button @tap="alert" size="mini">打开窗口</button>
       <button @tap="navigateTo" size="mini">跳转页面</button>
+      <button @tap="navigateToMallList" size="mini">跳转商城页面</button>
     </panel>
 
     <panel>
@@ -194,6 +195,11 @@
       navigateTo(){
         wepy.navigateTo({
           url: 'test?id=1'
+        })
+      },
+      navigateToMallList(){
+        wepy.navigateTo({
+          url: 'mallList'
         })
       },
       plus () {

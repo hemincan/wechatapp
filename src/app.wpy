@@ -1,4 +1,38 @@
 <style lang="less">
+@import './style/weui.less';
+page{
+    background-color: #F8F8F8;
+    font-size: 16px;
+    font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+}
+.page__hd {
+    padding: 40px;
+}
+.page__bd {
+    padding-bottom: 40px;
+}
+.page__bd_spacing {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.page__ft{
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.page__title {
+    text-align: left;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.page__desc {
+    margin-top: 5px;
+    color: #888888;
+    text-align: left;
+    font-size: 14px;
+}
 .container {
   height: 100%;
   display: flex;
@@ -23,14 +57,39 @@ export default class extends wepy.app {
   config = {
     pages: [
       'pages/index',
-      'pages/test'
+      'pages/mallList',
+      'pages/my'
     ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
-    }
+    },
+    tabBar: {
+        "color": "#6e6d6b",
+        "selectedColor": "#e64340",
+        "borderStyle": "white",
+        "backgroundColor": "#fff",
+        "box-shadow":"0 0 6px 0",
+        "list": [{
+         "pagePath": "pages/index",
+          "iconPath": "images/nav/home-off.png",
+          "selectedIconPath": "images/nav/home-on.png",
+          "text": "首页"
+        }, {
+          "pagePath": "pages/mallList",
+          "iconPath": "images/nav/cart-off.png",
+          "selectedIconPath": "images/nav/cart-on.png",
+          "text": "购物车"
+        },
+        {
+          "pagePath": "pages/my",
+          "iconPath": "images/nav/my-off.png",
+          "selectedIconPath": "images/nav/my-on.png",
+          "text": "我的"
+        }]
+      }
   }
 
   globalData = {
