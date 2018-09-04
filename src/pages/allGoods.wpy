@@ -1,0 +1,50 @@
+<style>
+.placeholder{
+    margin: 5px;
+    padding: 0 10px;
+    text-align: center;
+    height: 1.3em;
+    line-height: 1.3em;
+    color: #cfcfcf;
+}
+</style>
+<template>
+   <view class="page">
+       
+    </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class AllGoods extends wepy.page {
+    config = {
+      navigationBarTitleText: '我的'
+    };
+    components = {
+     
+    };
+
+    data = {
+      
+    };
+
+    computed = {
+        
+    };
+
+    methods = {
+       
+    };
+
+    events = {
+     
+    };
+    onReachBottom() {
+       
+    };
+    onLoad() {
+       
+    }
+  }
+</script>
