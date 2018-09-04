@@ -1,7 +1,7 @@
 <style lang="less">
 @import './style/weui.less';
 page{
-    background-color: #F8F8F8;
+    background-color: #fff;
     font-size: 16px;
     font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
 }
@@ -58,9 +58,11 @@ export default class extends wepy.app {
     pages: [
       'pages/index',
       'pages/mallList',
-      'pages/my'
+      'pages/my',
+      'pages/goodsDetails'
     ],
     window: {
+      "enablePullDownRefresh": true,
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',

@@ -7,15 +7,26 @@
     line-height: 1.3em;
     color: #cfcfcf;
 }
+.sort-item{
+    margin: 5px;
+    padding: 5px 10px;
+    text-align: center;
+    height: 1.3em;
+    line-height: 1.3em;
+    color: #000;
+}
+.liBkgCor {
+    color: red;
+}
 </style>
 <template>
    <view class="page">
        <view class="weui-flex">
-            <view>
+           <!--  <view>
               分类
-            </view>
-            <view class="weui-flex__item">
-                <view class="weui-search-bar">
+            </view> -->
+            <view class="weui-flex__item" >
+                <view class="weui-search-bar" style="background:#fff">
                     <view class="weui-search-bar__form">
                         <view class="weui-search-bar__box">
                             <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
@@ -37,11 +48,11 @@
             </view> -->
         </view>
         
-        <view class="weui-flex">
-            <view class="weui-flex__item"><view class="placeholder">综合</view></view>
-            <view class="weui-flex__item"><view class="placeholder">销量</view></view>
-            <view class="weui-flex__item"><view class="placeholder">新品</view></view>
-            <view class="weui-flex__item"><view class="placeholder">价格</view></view>
+        <view class="weui-flex" style="background:#fff;">
+           <repeat for="{{sortItem}}" key="index" index="index" item="item">
+              <view class="weui-flex__item"><view  @tap="sortItemCick({{item}})" class="{{ currentSelectSortItem == item.name ? 'liBkgCor sort-item':'sort-item' }}">{{item.name}}</view></view>
+            
+            </repeat>
         </view>
 
         <view class="page__bd">
@@ -49,8 +60,8 @@
                 <!-- <view class="weui-panel__hd">图文组合列表</view> -->
                 <view class="weui-panel__bd">
                     <repeat for="{{goodsData}}" key="index" index="index" item="item">
-                        <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-                            <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <navigator url="/pages/goodsDetails" class=" weui-media-box_appmsg" hover-class="weui-cell_active">
+                            <view style="margin: -5px 0 -5px -15px;width:70px;height:70px;padding:15px;" class="weui-media-box__hd weui-media-box__hd_in-appmsg">
                                 <image class="weui-media-box__thumb" src="{{icon60}}" />
                             </view>
                             <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
@@ -88,6 +99,21 @@
     data = {
        inputShowed: false,
        inputVal: '',
+       sortItem:[
+          {
+            name:'综合'
+          },
+          {
+            name:'销量'
+          },
+          {
+            name:'新品'
+          },
+          {
+            name:'价格'
+          }
+       ],
+       currentSelectSortItem:'综合',
        goodsData:[
           {
             name:'111',
@@ -151,6 +177,10 @@
         },
         inputTyping (e) {
             this.inputVal = e.detail.value;
+        },
+        sortItemCick(item) {
+          this.currentSelectSortItem = item.name;
+          console.log(item)
         }
     };
 
@@ -165,6 +195,17 @@
               });
         }
     };
+   onPullDownRefresh(){
+      wepy.showNavigationBarLoading();
+      console.log("下拉")
+      //模拟加载
+      setTimeout(function()
+      {
+        // complete
+        wepy.hideNavigationBarLoading() //完成停止加载
+        wepy.stopPullDownRefresh() //停止下拉刷新
+      },1500);
+   };
     onLoad() {
         let base64 = require('../images/base64');
 

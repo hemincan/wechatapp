@@ -1,0 +1,82 @@
+<style>
+.placeholder{
+    margin: 5px;
+    padding: 0 10px;
+    text-align: center;
+    height: 1.3em;
+    line-height: 1.3em;
+    color: #cfcfcf;
+}
+</style>
+<template>
+   <view class="page">
+           <swiper indicator-dots="true" autoplay="true" interval="5000" duration="500" indicator-active-color="#ffc452" indicator-color="#efefef" class="swiper">
+          <block wx:for="{{photoList}}" key="item" item="item" wx:key="key">
+            <swiper-item>
+              <image src="{{item.url}}" data-src="{{item.url}}" class="slide-image" @tap="previewImage" />
+            </swiper-item>
+          </block>
+        </swiper>
+    </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class GoodsDetails extends wepy.page {
+    config = {
+      navigationBarTitleText: '商品详情'
+    };
+    components = {
+     
+    };
+
+    data = {
+        photoList:[
+            {
+                url:'/images/pic_article.png'
+            },
+             {
+                url:'/images/pic_article.png'
+            },
+             {
+                url:'/images/pic_article.png'
+            },
+             {
+                url:'/images/pic_article.png'
+            }
+        ]
+    };
+
+    computed = {
+        
+    };
+
+    methods = {
+       previewImage(e) {
+          let current = e.target.dataset.src;
+          // console.log(current)
+          let imageArry = [];
+          let obj = this.photoList;
+          Object.keys(obj).forEach((index) => {
+            // console.log(index)
+            imageArry.push(obj[index].url)
+          });
+          wx.previewImage({
+            current: current, // 当前显示图片的http链接
+            urls: imageArry, // 需要预览的图片http链接列表
+          })
+        },
+    };
+
+    events = {
+     
+    };
+    onReachBottom() {
+       
+    };
+    onLoad() {
+       
+    }
+  }
+</script>
