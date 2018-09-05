@@ -1,16 +1,29 @@
-<style>
-.placeholder{
-    margin: 5px;
-    padding: 0 10px;
-    text-align: center;
-    height: 1.3em;
-    line-height: 1.3em;
-    color: #cfcfcf;
-}
-</style>
+
 <template>
    <view class="page">
-       
+        <view class="top_search">
+            <view class="search_read_only">
+              <navigator class="search_content" url="/pages/search">
+                 <icon class="weui-icon-search" type="search" size="14"></icon>
+                <view class="search_input">搜索商品</view>
+              </navigator>
+            </view>
+          </view>
+          <view class="classify" style="height:{{windowHeight-50}}px">
+            <scroll-view class="classify_catetory" scroll-y scroll-with-animation="true" style="height:{{windowHeight-50}}px">
+              <view class="name {{item.active? 'active':''}}" wx:for="{{rootcateList}}" wx:key="item" @tap="changeCate({{item}})" data-code="{{item.id}}">
+                {{item.name}}
+              </view>
+            </scroll-view>
+            <scroll-view class="classify_detail" scroll-y scroll-with-animation="true" style="height:{{windowHeight-50}}px">
+                <view class="children">
+                  <navigator hover-class="none" class="children_item" wx:for="{{childcateList}}" wx:for-item="item" wx:key="index" url="/pages/search?cateCode={{item.code}}&title={{item.name}}">
+                    <image class="child_image" src="{{item.thumLogo}}"></image>
+                    <view class="child_name">{{item.name}}</view>
+                  </navigator>
+                </view>
+            </scroll-view>
+          </view>
     </view>
 </template>
 
@@ -19,14 +32,55 @@
 
   export default class AllGoods extends wepy.page {
     config = {
-      navigationBarTitleText: '我的'
+      navigationBarTitleText: '分类'
     };
     components = {
      
     };
 
     data = {
-      
+        scrollTop: 100,
+        windowHeight: 0,
+        list: {},
+        //一级分类数据
+        rootcateList: [
+             {
+                id:1,
+                name:'槈霜夺'
+             },
+              {
+                id:2,
+                name:'槈霜夺'
+             },
+              {
+                id:3,
+                name:'槈霜夺',
+                active:true
+             }
+        ],
+        //二级三级分类数据
+        childcateList: [
+             {
+                id:1,
+                name:'槈霜夺',
+                thumLogo:'../images/goods02.png'
+             },
+              {
+                id:1,
+                name:'槈霜夺',
+                thumLogo:'../images/goods02.png'
+             },
+              {
+                id:1,
+                name:'槈霜夺',
+                thumLogo:'../images/goods02.png'
+             },
+              {
+                id:1,
+                name:'槈霜夺',
+                thumLogo:'../images/goods02.png'
+             }
+        ]
     };
 
     computed = {
@@ -34,7 +88,16 @@
     };
 
     methods = {
-       
+        changeCate(item) {
+             //设置一级分类的选中状态
+             for (var i = this.rootcateList.length - 1; i >= 0; i--) {
+                 if(this.rootcateList[i].id==item.id){
+                    this.rootcateList[i].active = true;
+                 }else{
+                    this.rootcateList[i].active = false;
+                 }
+             }
+        },
     };
 
     events = {
@@ -44,7 +107,112 @@
        
     };
     onLoad() {
-       
+       let _this = this;
+       //获取系统 的信息
+       wx.getSystemInfo({
+            success:function(res){
+                _this.windowHeight = res.screenHeight;
+            }
+       });
     }
   }
 </script>
+<style lang="less">
+.search_read_only .search_content {
+  width: 100%;
+}
+.search_read_only {
+  align-items: center;
+  display: flex;
+  margin: 0 auto;
+  width: 100%;
+  .search_content {
+    display: flex;
+    align-items: center;
+    border-radius: 10rpx;
+    color: #999;
+    width: 85%;
+    background: #efefef;
+    padding: 0 30rpx;
+    height: 55rpx;
+    margin: 0 auto;
+    .search_input {
+      font-size: 26rpx;
+      width: 100%;
+    }
+  }
+  .icon-search {
+    font-size: 40rpx;
+  }
+  .icon-message {
+    font-size: 50rpx;
+  }
+}
+
+.top_search {
+  padding: 20rpx 0rpx;
+  background: #fff;
+}
+
+.classify {
+  display: flex;
+  position: relative;
+  .classify_catetory {
+    width: 240rpx;
+    background: #fcfcfc;
+    position: relative;
+    z-index: 1;
+    .name {
+      text-align: center;
+      height: 100rpx;
+      line-height: 100rpx;
+      font-size: 28rpx;
+      color: #666;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .active {
+      border-left: 10rpx solid #ff6a3c;
+      background: #fff;
+      color: #ff6a3c;
+    }
+  }
+  .classify_detail {
+    position: relative;
+    z-index: 999;
+    // margin-left: -15rpx;
+    background: #fff;
+    padding: 0px 0px 0px 0px;
+    .classify_item {}
+    .title {
+      font-size: 30rpx;
+      color: #333;
+      margin-left: 25rpx;
+    }
+    .children {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 20rpx 0rpx;
+    }
+    .child_image {
+      width: 70px;
+      height: 70px;
+    }
+    .child_name {
+      font-size: 26rpx;
+      color: #666;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 270rpx;
+    }
+    .children_item {
+      height: 250rpx;
+      width: 270rpx;
+      text-align: center;
+    }
+  }
+}
+
+</style>
