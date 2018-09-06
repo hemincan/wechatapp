@@ -1,13 +1,4 @@
-<style>
-.placeholder{
-    margin: 5px;
-    padding: 0 10px;
-    text-align: center;
-    height: 1.3em;
-    line-height: 1.3em;
-    color: #cfcfcf;
-}
-</style>
+
 <template>
    <view class="page">
            <swiper indicator-dots="true" autoplay="true" interval="5000" duration="500" indicator-active-color="#ffc452" indicator-color="#efefef" class="swiper">

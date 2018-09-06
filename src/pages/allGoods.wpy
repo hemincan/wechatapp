@@ -9,13 +9,13 @@
               </navigator>
             </view>
           </view>
-          <view class="classify" style="height:{{windowHeight-50}}px">
-            <scroll-view class="classify_catetory" scroll-y scroll-with-animation="true" style="height:{{windowHeight-50}}px">
+          <view class="classify" style="height:{{windowHeight-150}}px">
+            <scroll-view class="classify_catetory" scroll-y scroll-with-animation="true" style="height:{{windowHeight-150}}px">
               <view class="name {{item.active? 'active':''}}" wx:for="{{rootcateList}}" wx:key="item" @tap="changeCate({{item}})" data-code="{{item.id}}">
                 {{item.name}}
               </view>
             </scroll-view>
-            <scroll-view class="classify_detail" scroll-y scroll-with-animation="true" style="height:{{windowHeight-50}}px">
+            <scroll-view class="classify_detail" scroll-y scroll-with-animation="true" style="height:{{windowHeight-150}}px">
                 <view class="children">
                   <navigator hover-class="none" class="children_item" wx:for="{{childcateList}}" wx:for-item="item" wx:key="index" url="/pages/search?cateCode={{item.code}}&title={{item.name}}">
                     <image class="child_image" src="{{item.thumLogo}}"></image>
@@ -61,6 +61,31 @@
         //二级三级分类数据
         childcateList: [
              {
+                id:1,
+                name:'槈霜夺',
+                thumLogo:'../images/goods02.png'
+             },
+              {
+                id:1,
+                name:'槈霜夺',
+                thumLogo:'../images/goods02.png'
+             },
+              {
+                id:1,
+                name:'槈霜夺',
+                thumLogo:'../images/goods02.png'
+             },
+              {
+                id:1,
+                name:'槈霜夺',
+                thumLogo:'../images/goods02.png'
+             },
+              {
+                id:1,
+                name:'槈霜夺',
+                thumLogo:'../images/goods02.png'
+             },
+              {
                 id:1,
                 name:'槈霜夺',
                 thumLogo:'../images/goods02.png'
@@ -155,11 +180,12 @@
 }
 
 .classify {
+  border-top:1px solid #efefef;
   display: flex;
   position: relative;
   .classify_catetory {
     width: 240rpx;
-    background: #fcfcfc;
+    background: #efefef;
     position: relative;
     z-index: 1;
     .name {

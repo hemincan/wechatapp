@@ -17,7 +17,7 @@
 <script>
   import wepy from 'wepy'
 
-  export default class MallList extends wepy.page {
+  export default class My extends wepy.page {
     config = {
       navigationBarTitleText: '我的'
     };
