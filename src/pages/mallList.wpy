@@ -35,6 +35,7 @@
   display: flex;
   flex-wrap: wrap;
   padding-bottom: 30rpx;
+
 }
 
 .list:nth-child(odd) {
@@ -111,6 +112,41 @@
     padding-left: 20rpx;
   }
 }
+
+
+
+
+ /*向上*/
+  .arrow_up_red {
+    border-color: transparent transparent #f03939;
+  }
+  .arrow_down_red {
+    border-color: #f03939 transparent transparent;
+  }
+  .arrow_up_gray {
+    border-color: transparent transparent #ccc;
+  }
+  .arrow_down_gray {
+    border-color: #ccc transparent transparent;
+  }
+  .arrow_up {
+    width: 0;
+    height: 0;
+    border-width: 0 10rpx 10rpx;
+    border-style: solid;
+    margin: 9rpx 10rpx;
+    position: relative;
+  }
+  /*向下*/
+  .arrow_down {
+    width: 0;
+    height: 0;
+    border-width: 10rpx 10rpx 0;
+    border-style: solid;
+    /*灰 透明 透明 */
+    margin: 9rpx 10rpx;
+    position: relative;
+  }
 </style>
 <template>
    <view class="page">
@@ -135,8 +171,8 @@
                     </view>
                     <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
                 </view> -->
-                <view style="width:10%;">切换</view>
-                <view style="width:80%;" class="top_search">
+                <view style="width:10%;">切</view>
+                <view style="width:82%;" class="top_search">
                   <view class="search_read_only">
                     <navigator class="search_content" url="/pages/search">
                        <icon class="weui-icon-search" type="search" size="14"></icon>
@@ -144,18 +180,39 @@
                     </navigator>
                   </view>
                 </view>
-                <view style="width:10%;" @tap="shiftView">切换</view>
+                <view style="width:10%;" @tap="shiftView">切</view>
             </view>
             <!-- <view>
             sdfdsf
             </view> -->
         </view>
         
-        <view class="weui-flex" style="background:#fff;margin-bottom:4px;">
-           <repeat for="{{sortItem}}" key="index" index="index" item="item">
-              <view class="weui-flex__item" ><view style="border-right:1px solid #efefef;"  @tap="sortItemCick({{item}})" class="{{ currentSelectSortItem == item.name ? 'liBkgCor sort-item':'sort-item' }}">{{item.name}}</view></view>
+        <view class="weui-flex" style="background:#fff;margin-bottom:4px;border-top: 1px solid #ccc;border-bottom: 1px solid #ccc">
+          <!--  <repeat for="{{sortItem}}" key="index" index="index" item="item">
+             
             
-            </repeat>
+            </repeat> -->
+             <view style="width: 25%;" >
+                <view style="height: 30rpx;line-height:30rpx ;border-right:1px solid #ccc;"  @tap="sortItemCick('综合')" class="{{ currentSelectSortItem == '综合' ? 'liBkgCor sort-item':'sort-item' }}">综合</view>
+              </view>
+
+              <view style="width: 25%;" >
+                <view style="height: 30rpx;line-height:30rpx ;border-right:1px solid #ccc;"  @tap="sortItemCick('销量')" class="{{ currentSelectSortItem == '销量' ? 'liBkgCor sort-item':'sort-item' }}">销量</view>
+              </view>
+
+              <view style="width: 25%;" >
+                <view style="height: 30rpx;line-height:30rpx ;border-right:1px solid #ccc;"  @tap="sortItemCick('新品')" class="{{ currentSelectSortItem == '新品' ? 'liBkgCor sort-item':'sort-item' }}">新品</view>
+              </view>
+
+              <view style="width: 25%;display: flex;" >
+                  <view style="height: 30rpx;line-height:30rpx ;"  @tap="sortItemCick('价格')" class="{{ currentSelectSortItem == '价格' ? 'liBkgCor sort-item':'sort-item' }}">价格
+                  </view>
+                   <view style="margin-top: 20rpx;margin-left: -20rpx;">
+                    <view class="arrow_up {{arrowType=='desc' ? 'arrow_up_red' : 'arrow_up_gray'}}"></view>
+                    <!-- 向下的三角形 -->
+                    <view class="arrow_down {{arrowType=='asc' ? 'arrow_down_red' : 'arrow_down_gray'}} "></view>
+                  </view>
+              </view>
         </view>
       
         <view class="page__bd">
@@ -164,13 +221,13 @@
                 <view class="weui-panel__bd" style="background:#efefef">
 
                     <!-- <scroll-view scroll-y="true" class="swiper-item-box"> -->
-                    <view wx:if="{{!normalView}}" class="shop_item">
-                      <navigator class="list" wx:for="{{goodsData}}" wx:key="item" url="/pages/goods_detail?id={{item.id}}&purchasetype={{purchasetype}}&special={{special}}">
+                    <view wx:if="{{!normalView}}" class="shop_item" >
+                      <navigator class="list" wx:for="{{goodsData}}" wx:key="item" url="/pages/goods_detail?id={{item.id}}&purchasetype={{purchasetype}}&special={{special}}" style="margin-top: 30rpx">
                         <view class="image_box">
                           <image src="{{icon60}}"></image>
                         </view>
                         <view class="goods">
-                          <view class="product_name" wx:if="{{showTitle}}">{{item.name}}</view>
+                          <view class="product_name" >{{item.name}}</view>
                           <view class="product_info">
                             <view class="price">￥{{item.price}}</view>
                             <view class="cartImg" style="width:40px;"><image src="{{icon60}}"></image></view>
@@ -186,7 +243,7 @@
 
 
                     <repeat wx:if="{{normalView}}" for="{{goodsData}}" key="index" index="index" item="item" >
-                        <navigator url="/pages/goodsDetails" class=" weui-media-box_appmsg" hover-class="weui-cell_active" style="margin-top:3px;background:#fff;height:230rpx">
+                        <navigator url="/pages/goodsDetails" class=" weui-media-box_appmsg" hover-class="weui-cell_active" style="margin-top:3px;background:#fff;height:230rpx;">
                             <view style="margin: -0px 0 -0px -10px;width:230rpx;padding:15px;height:230rpx;" class="weui-media-box__hd weui-media-box__hd_in-appmsg">
                                 <image class="weui-media-box__thumb" src="{{icon60}}" />
                             </view>
@@ -229,20 +286,21 @@
        normalView:true,
        inputShowed: false,
        inputVal: '',
-       sortItem:[
-          {
-            name:'综合'
-          },
-          {
-            name:'销量'
-          },
-          {
-            name:'新品'
-          },
-          {
-            name:'价格'
-          }
-       ],
+       arrowType:'desc',
+       // sortItem:[
+       //    {
+       //      name:'综合'
+       //    },
+       //    {
+       //      name:'销量'
+       //    },
+       //    {
+       //      name:'新品'
+       //    },
+       //    {
+       //      name:'价格'
+       //    }
+       // ],
        currentSelectSortItem:'综合',
        goodsData:[
           {
@@ -319,7 +377,7 @@
             this.inputVal = e.detail.value;
         },
         sortItemCick(item) {
-          this.currentSelectSortItem = item.name;
+          this.currentSelectSortItem = item;
           console.log(item)
         },
         shiftView(){

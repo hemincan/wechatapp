@@ -61,7 +61,8 @@ export default class extends wepy.app {
       'pages/mallList',
       'pages/my',
       'pages/goodsDetails',
-      'pages/allGoods'
+      'pages/allGoods',
+      "pages/shoppingCart"
     ],
     window: {
       "enablePullDownRefresh": true,
@@ -90,6 +91,12 @@ export default class extends wepy.app {
         }, 
         {
           "pagePath": "pages/mallList",
+          "iconPath": "images/nav/cart-off.png",
+          "selectedIconPath": "images/nav/cart-on.png",
+          "text": "购物车"
+        },
+        {
+          "pagePath": "pages/shoppingCart",
           "iconPath": "images/nav/cart-off.png",
           "selectedIconPath": "images/nav/cart-on.png",
           "text": "购物车"

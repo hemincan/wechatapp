@@ -1,0 +1,121 @@
+
+<template>
+   <view class="page">
+       <view class="top-title">
+           <view style="width: 85%;">
+                <view style="margin-left: 50px;">我的购物车</view>
+           </view>
+            <view style="color: #ccc;margin-right: 20rpx;">
+            移除
+           </view>
+       </view>
+
+       <view class="jiesuan-box" >
+        <view class="left-price">
+          <view @tap.stop="selectAll" class="all_select_box">
+            <icon type="success" size="20" color="{{allChecked?'red':'rgb(153,153,153)'}}" />
+            <view class="all_select">全选</view>
+          </view>
+        </view>
+        <view class="total" hidden="{{noSelect}}">
+            <view>
+                合计：¥ {{totalPrice}}
+            </view>
+            <view style="font-size: 25rpx;color: #ccc">
+                (不含运费：0.0)
+            </view>
+        </view>
+        <view class="to-pay-btn {{noSelect?'no-select':''}}"  bindtap="toPayOrder">去结算</view>
+      </view>
+    </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class ShoppingCart extends wepy.page {
+    config = {
+      navigationBarTitleText: '我的'
+    };
+    components = {
+     
+    };
+
+    data = {
+      allChecked:true,
+      noSelect:false,
+      totalPrice:934
+    };
+
+    computed = {
+        
+    };
+
+    methods = {
+       
+    };
+
+    events = {
+     
+    };
+    onReachBottom() {
+       
+    };
+    onLoad() {
+       
+    }
+  }
+</script>
+<style lang="less">
+.top-title {
+    text-align:center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 70rpx;
+    position: fixed;
+    top: 0;
+    border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+    background-color: #fff;
+    z-index: 9999;
+  }
+
+.jiesuan-box {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100rpx;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+    background-color: #fff;
+    z-index: 9999;
+  }
+  .jiesuan-box .to-pay-btn {
+    width: 240rpx;
+    text-align: center;
+    line-height: 100rpx;
+    background-color: #e64340;
+    font-size: 32rpx;
+    color: #ffffff;
+  }
+  .jiesuan-box .to-pay-btn.no-select {
+    background-color: #ccc;
+  }
+  .jiesuan-box .left-price {
+    display: flex;
+    width: 120rpx;
+    justify-content: space-between;
+    padding: 0 10rpx 0 20rpx;
+    font-size: 28rpx;
+    box-sizing: border-box;
+    align-items: center;
+  }
+  .jiesuan-box .total {
+    font-size: 35rpx;
+    margin-left: -150rpx;
+  }
+</style>
