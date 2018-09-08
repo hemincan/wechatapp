@@ -1,0 +1,65 @@
+
+   <view class="page">
+        
+        <view style="width:100%;height:350rpx;background:#333;">
+           
+        </view>
+        <view style="display:flex;flex-direction:row;margin-top:-50rpx;margin-left:30rpx"> 
+                <view style="width:130rpx;height:130rpx;background:red;"> 
+                
+                </view>
+                <view style="margin-top:80rpx;"> 
+                ssdfsdfs
+                </view>
+        </view>
+        <view style="width:100%;text-align:center;"> 
+          <view class="top_search">
+              <view class="search_read_only">
+                <navigator class="search_content" url="/pages/search">
+                   <icon class="weui-icon-search" type="search" size="14"/>
+                  <view class="search_input">输入关键字搜索</view>
+                </navigator>
+              </view>
+            </view>
+          </view>
+      
+        <view style="height:50px;overflow:hidden;padding:5px;">
+            <swiper vertical="true" autoplay="true" circular="true" interval="2000">
+              <block  wx:for="{{msgList}}" wx:key="item">
+               <navigator url="/pages/index/index?title={{item.url}}" open-type="navigate">
+                    <swiper-item>
+                             <view style="display:flex;flex-direction:row;height:120rpx;overflow:hidden;margin-top:10rpx;">
+                                    <view style="width:20%">购物需知</view>
+                                    <view style="width:80%;">{{item.title}}</view>
+                            </view>
+                     <!-- <view class="swiper_item">{{item.title}}</view> -->
+                    </swiper-item>
+               </navigator>
+              </block>
+            </swiper>
+        </view>
+       <view style="width:100%;text-align:center;margin:30rpx 0 30rpx 0">
+             <view style="margin:0 auto; background: #E0E3DA;width: 95%;height: 5rpx;">
+               
+             </view>
+           <view style="margin-top:-30rpx;">为你推荐 </view>
+       </view>
+        <scroll-view scroll-y="true" class="swiper-item-box">
+            <view class="shop_item">
+              <navigator class="list"  wx:for="{{list}}" wx:key="item" url="/pages/goods_detail?id={{item.id}}&purchasetype={{purchasetype}}&special={{special}}">
+                <view class="image_box">
+                  <image src="{{item.thumLogo}}"/>
+                </view>
+                <view class="goods">
+                  <view class="product_name" wx:if="{{showTitle}}">{{item.name}}</view>
+                  <view class="product_info">
+                    <view class="price">￥{{item.price}}</view>
+                    <view class="cartImg" style="width:40px;"><image src="{{cartImg}}"/></view>
+                    <!-- <view class="cost_price">￥{{item.marketPrice}}</view>
+                    <view class="sale_num">销量{{item.saleCount}}件</view> -->
+                  </view>
+                </view>
+              </navigator>
+            </view>
+          </scroll-view>
+    </view>

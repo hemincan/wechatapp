@@ -1,0 +1,93 @@
+.search_read_only .search_content {
+  width: 100%;
+}
+.search_read_only {
+  align-items: center;
+  display: flex;
+  margin: 0 auto;
+  width: 100%;
+}
+.search_read_only .search_content {
+  display: flex;
+  align-items: center;
+  border-radius: 10rpx;
+  color: #999;
+  width: 85%;
+  background: #efefef;
+  padding: 0 30rpx;
+  height: 55rpx;
+  margin: 0 auto;
+}
+.search_read_only .search_content .search_input {
+  font-size: 26rpx;
+  width: 100%;
+}
+.search_read_only .icon-search {
+  font-size: 40rpx;
+}
+.search_read_only .icon-message {
+  font-size: 50rpx;
+}
+.top_search {
+  padding: 20rpx 0rpx;
+  background: #fff;
+}
+.classify {
+  border-top: 1px solid #efefef;
+  display: flex;
+  position: relative;
+}
+.classify .classify_catetory {
+  width: 240rpx;
+  background: #efefef;
+  position: relative;
+  z-index: 1;
+}
+.classify .classify_catetory .name {
+  text-align: center;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 28rpx;
+  color: #666;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.classify .classify_catetory .active {
+  border-left: 10rpx solid #ff6a3c;
+  background: #fff;
+  color: #ff6a3c;
+}
+.classify .classify_detail {
+  position: relative;
+  z-index: 999;
+  background: #fff;
+  padding: 0px 0px 0px 0px;
+}
+.classify .classify_detail .title {
+  font-size: 30rpx;
+  color: #333;
+  margin-left: 25rpx;
+}
+.classify .classify_detail .children {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20rpx 0rpx;
+}
+.classify .classify_detail .child_image {
+  width: 70px;
+  height: 70px;
+}
+.classify .classify_detail .child_name {
+  font-size: 26rpx;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 270rpx;
+}
+.classify .classify_detail .children_item {
+  height: 250rpx;
+  width: 270rpx;
+  text-align: center;
+}
