@@ -3,12 +3,39 @@
    <view class="page">
        <view class="top-title">
            <view style="width: 85%;">
-                <view style="margin-left: 50px;">我的购物车</view>
+                <view style="margin-left: 50px;padding: 10rpx 0">我的购物车</view>
            </view>
-            <view style="color: #ccc;margin-right: 20rpx;">
+            <view style="color: #ccc;margin-right: 20rpx;padding: 10rpx 0">
             移除
            </view>
        </view>
+
+       <view style="margin-top: 80rpx;margin-bottom: 110rpx;overflow: hidden;width: 100%;">
+            <repeat  for="{{goodsData}}" key="index" index="index" item="item" >
+                <navigator url="/pages/goodsDetails" class=" weui-media-box_appmsg" hover-class="weui-cell_active" style="background:#fff;height:230rpx;border-bottom: 1px solid #eee;">
+
+                     <icon class="icon_check" type="success" color="{{item.ischecked?'red':'rgb(153,153,153)'}}" @tap.stop="selectTap" data-index="{{index}}" data-id="{{item.id}}" size="20" />
+
+                    <view style="margin: -0px 0 -0px 40rpx;width:210rpx;padding:15px;height:210rpx;" class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image class="weui-media-box__thumb" src="{{thumLogo}}" />
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg" style="margin-top:-10px;margin-bottom:-10px;">
+                        <view class="" style="font-size:14px;">{{item.name}}</view>
+                        <view class="weui-media-box__desc" style="margin-top:20px;display:flex;">
+                          <view class="price">￥{{item.price}}</view>
+                          <view style="z-index: 100">
+
+                                <view class='stepper'>
+                                  <text class='{{minusStatus}}' data-index="{{index}}" data-id="{{item.id}}"  @tap.stop="bindMinus">-</text>
+                                  <input type='number' @tap.stop="stopInput" bindinput='bindManual' value='{{item.num}}'></input>
+                                  <text data-index="{{index}}" data-id="{{item.id}}"  @tap.stop="bindPlus">+</text>
+                                </view>
+                          </view>
+                        </view>
+                    </view>
+                </navigator>
+            </repeat>
+        </view>
 
        <view class="jiesuan-box" >
         <view class="left-price">
@@ -44,7 +71,73 @@
     data = {
       allChecked:true,
       noSelect:false,
-      totalPrice:934
+      totalPrice:934,
+      goodsData:[
+          {
+            name:'专用自能锁 全铜新人人工智能优质全铜新人人工智能优质',
+            detail:'234234324',
+            price:399,
+            ischecked:true,
+            num:2
+          },
+          {
+            name:'专用自能锁 全铜新人人工智能优质',
+            detail:'234234324',
+            price:399,
+            ischecked:true,
+            num:2
+          },
+          {
+            name:'专用自能锁 全铜新人人工智能优质',
+            detail:'234234324',
+            price:399,
+            ischecked:true,
+            num:2
+          },
+          {
+            name:'专用自能锁 全铜新人人工智能优质',
+            detail:'234234324',
+            price:399,
+            num:1
+          },
+          {
+            name:'专用自能锁 全铜新人人工智能优质',
+            detail:'234234324',
+            price:399,
+            num:1
+          },
+          {
+            name:'专用自能锁 全铜新人人工智能优质',
+            detail:'234234324',
+            price:399,
+            num:1
+          },
+          {
+            name:'专用自能锁 全铜新人人工智能优质',
+            detail:'234234324',
+            price:399,
+            num:1
+          },
+          {
+            name:'专用自能锁 全铜新人人工智能优质',
+            detail:'234234324',
+            price:399,
+            num:1
+          },
+          {
+            name:'专用自能锁 全铜新人人工智能优质',
+            detail:'234234324',
+            price:399,
+            num:1
+          },
+          {
+            name:'专用自能锁 全铜新人人工智能优质',
+            detail:'234234324',
+            price:399,
+            num:1
+          }
+       ],
+       thumLogo:'../images/goods02.png',
     };
 
     computed = {
@@ -52,7 +145,23 @@
     };
 
     methods = {
-       
+       bindMinus(e){
+              var id = e.currentTarget.dataset.id;
+            var index = parseInt(e.currentTarget.dataset.index);
+            this.goodsData[index].num--;
+       },
+       bindPlus(e){
+            var id = e.currentTarget.dataset.id;
+            var index = parseInt(e.currentTarget.dataset.index);
+            this.goodsData[index].num++;
+       },
+       bindManual(e){
+          var num = e.detail.value;
+          console.log(num)
+       },
+       stopInput(){
+
+       }
     };
 
     events = {
@@ -67,12 +176,23 @@
   }
 </script>
 <style lang="less">
+.price {
+    color: #de0000;
+    font-size: 30rpx;
+    font-weight: 600;
+    width: 80%;
+}
+.icon_check {
+      position: absolute;
+      height: 165rpx;
+      line-height: 165rpx;
+      margin-left: 20rpx;
+}
 .top-title {
     text-align:center;
     display: flex;
     justify-content: space-between;
     width: 100%;
-    height: 70rpx;
     position: fixed;
     top: 0;
     border-bottom: 1px solid #eee;
@@ -118,4 +238,43 @@
     font-size: 35rpx;
     margin-left: -150rpx;
   }
+
+
+
+  /*主容器*/
+.stepper {
+  width:70px;
+  height:20px;
+  margin: 0 0 0 0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  overflow: hidden;
+}
+/*加号和减号*/
+.stepper text {
+  float: left;
+  width: 19px;
+  line-height: 20px;
+  text-align: center;
+}
+/*数值*/
+.stepper input {
+  /*background: #000;*/
+  width: 30px;
+  height: 20px;
+  float: left;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 12px;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+/*普通样式*/
+.stepper .normal {
+  color:black;
+}
+/*禁用样式*/
+.stepper .disable {
+  color: #ccc;
+}
 </style>

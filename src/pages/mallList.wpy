@@ -25,7 +25,7 @@
 }
 .price {
     color: #de0000;
-    font-size: 40rpx;
+    font-size: 30rpx;
     font-weight: 600;
     width: 80%;
 }
@@ -84,7 +84,7 @@
   }
   .price {
     color: #de0000;
-    font-size: 40rpx;
+    font-size: 30rpx;
     font-weight: 600;
   }
   .cost_price {
@@ -171,7 +171,11 @@
                     </view>
                     <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
                 </view> -->
-                <view style="width:10%;">切</view>
+                <view style="width:10%;background: #fff;" >
+                  <navigator url='/pages/classify'>
+                    <image style="width:  80rpx;height: 80rpx;" src="../images/icon_classify.png"></image>
+                  </navigator>
+                </view>
                 <view style="width:82%;" class="top_search">
                   <view class="search_read_only">
                     <navigator class="search_content" url="/pages/search">
@@ -180,7 +184,10 @@
                     </navigator>
                   </view>
                 </view>
-                <view style="width:10%;" @tap="shiftView">切</view>
+                <view style="width:10%;background: #fff;" @tap="shiftView">
+                     <image style="width:  80rpx;height: 80rpx;" src="../images/icon_classify.png"></image>
+                  </navigator>
+                </view>
             </view>
             <!-- <view>
             sdfdsf
@@ -248,7 +255,7 @@
                                 <image class="weui-media-box__thumb" src="{{icon60}}" />
                             </view>
                             <view class="weui-media-box__bd weui-media-box__bd_in-appmsg" style="margin-top:-10px;margin-bottom:-10px;">
-                                <view class="weui-media-box__title" style="font-size:14px;">{{item.name}}</view>
+                                <view class="" style="font-size:14px;">{{item.name}}</view>
                                 <view class="weui-media-box__desc" style="margin-top:20px;display:flex;">
                                   <view class="price">￥{{item.price}}</view>
                                   <view style="">加</view>

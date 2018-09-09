@@ -30,7 +30,7 @@
 <script>
   import wepy from 'wepy'
 
-  export default class AllGoods extends wepy.page {
+  export default class classify extends wepy.page {
     config = {
       navigationBarTitleText: '分类'
     };
