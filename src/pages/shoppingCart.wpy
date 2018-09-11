@@ -52,7 +52,12 @@
                 (不含运费：0.0)
             </view>
         </view>
-        <view class="to-pay-btn {{noSelect?'no-select':''}}"  bindtap="toPayOrder">去结算</view>
+        <view class="to-pay-btn {{noSelect?'no-select':''}}"  bindtap="toPayOrder"> 
+           <navigator url="/pages/confirmOrder">
+            去结算
+          </navigator>
+
+        </view>
       </view>
     </view>
 </template>

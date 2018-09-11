@@ -63,6 +63,7 @@ export default class extends wepy.app {
       'pages/my',
       'pages/goodsDetails',
       'pages/classify',
+      'pages/confirmOrder'
       
     ],
     window: {

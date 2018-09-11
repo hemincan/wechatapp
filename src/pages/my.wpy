@@ -1,16 +1,122 @@
 <style>
-.placeholder{
-    margin: 5px;
-    padding: 0 10px;
-    text-align: center;
-    height: 1.3em;
-    line-height: 1.3em;
-    color: #cfcfcf;
+.header {
+  background: #ff6a3c;
+  height: 360rpx;
+  width: 100%;
+
+}
+
+.header_content {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 48rpx;
+}
+
+.avatarUrl {
+  width: 122rpx;
+  height: 122rpx;
+  border-radius: 1000px;
 }
 </style>
 <template>
-   <view class="page">
-       
+   <view class="page" style="background: #eee;">
+
+        <view class="header">
+          <view class="header_content">
+            <image class="avatarUrl" src="../images/goods02.png"></image>
+            <view style="color: #fff;">王大锤</view>
+            <view style="color: #fff;">级别：v1.0  积分：0.0</view>
+          </view>
+        </view>
+
+        <view style="background: #fff;margin-top: 10px;">
+            <view>
+                 <view class="weui-cell">
+                    <view class="weui-cell__bd">
+                        <view style="display: inline-block; vertical-align: middle">我的订单</view>
+                        
+                    </view>
+                    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                </view>   
+            </view>
+           <view style="text-align: center;padding: 10px;">
+                <view class="weui-flex">
+                <view class="weui-flex__item">
+                    <view class="placeholder">
+                        <view>
+                            <image style="width: 60rpx;height: 60rpx;" src="../images/my/orderdfk.png" />
+                        </view>
+                        <view>
+                            待付款
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-flex__item">
+                    <view class="placeholder">
+                        <view>
+                            <image style="width: 60rpx;height: 60rpx;" src="../images/my/orderyfk.png" />
+                        </view>
+                        <view>
+                        待发货
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-flex__item">
+                    <view class="placeholder">
+                        <view>
+                            <image style="width: 60rpx;height: 60rpx;" src="../images/my/orderdfh.png" />
+                        </view>
+                        <view>
+                        待收货
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-flex__item">
+                    <view class="placeholder">
+                        <view>
+                            <image style="width: 60rpx;height: 60rpx;" src="../images/my/orderwq.png" />
+                        </view>
+                        <view>
+                        退换货
+                        </view>
+                    </view>
+                </view>
+           </view>
+        </view>
+
+        </view>
+
+       <view style="background: #fff;margin-top: 10px;">
+            <view class="weui-cell" style="position: static;">
+                <view class="weui-cell__bd">
+                    <view style="display: inline-block; vertical-align: middle">
+                         <image style="width: 40rpx;height: 40rpx;" src="../images/my/yhq.png" />我的优惠券
+                    </view>
+                    
+                </view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </view>
+            <view class="weui-cell" style="position: static;">
+                <view class="weui-cell__bd">
+                    <view style="display: inline-block; vertical-align: middle">
+                        <image style="width: 40rpx;height: 40rpx;" src="../images/my/jf.png" />我的积分
+                    </view>
+                    
+                </view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </view>
+            <view class="weui-cell" style="position: static;">
+                <view class="weui-cell__bd">
+                    <view style="display: inline-block; vertical-align: middle">
+                        <image style="width: 40rpx;height: 40rpx;" src="../images/my/dz.png" />收货地址
+                    </view>
+                    
+                </view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </view>
+
+       </view>
     </view>
 </template>
 
