@@ -1,0 +1,113 @@
+
+<template>
+   <view class="page" style="background:#eee;">
+      <view style="display:flex;justify-content: space-around;background:#fff;">
+       <repeat  for="{{tabData}}" key="index" index="index" item="item" >
+         <view @tap="selectTab({{item}})" class="{{currentTab==item?'tabActive':''}}" style="text-align:center;padding:5px 0 5px 0;font-size:15px;">{{item}}</view>
+        </repeat>
+      </view>
+
+      <repeat  for="{{orderData}}" key="index" index="index" item="item" >
+           <view style="width:100%;background:#fff;margin-top:5px;padding:10px;">
+              <view style="display:flex;">
+                  <view style="width:20%;height:60px;">
+                       <image style="width:120rpx;height: 100%;" src="../images/goods02.png"></image>
+                  </view>
+                  <view style="width:60%;font-size:13px;">
+                      标题标题标题标题标题标题
+                  </view>
+                  <view style="width:20%;color:#666;font-size:12px;">
+                    22211
+                  </view>
+              </view>
+              <view style="display:flex;height:30px;line-height:30px;">
+                  <view style="width:20%;color:red;font-size:12px;">
+                    专家没货
+                  </view>
+                  <view style="width:60%;font-size:12px;color:#777;text-align:right;">
+                    共一伯湖面宽阔，
+                  </view>
+                  <view style="width:20%;color:#777;font-size:12px;">
+                    合计1522
+                  </view>
+              </view>
+              <view style="display:flex;height:30px;line-height:30px;">
+                   <view style="width:50%;color:#444;color:#777;font-size:12px;">
+                       <image style="width:50rpx;height: 50rpx;" src="../images/goods02.png"></image>取消订单
+                   </view>
+                  <view style="width:45%;text-align:right;">
+                      <view style="border:1px solid #aaa;width:60px;height:20px;border-radius:25px;font-size:12px;float:right;text-align:center;">  确认收货
+                      </view>
+                  </view>
+              </view>
+           </view>
+        </repeat>
+    </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class MyOrder extends wepy.page {
+    config = {
+      navigationBarTitleText: '我的订单'
+    };
+    components = {
+     
+    };
+
+    data = {
+      currentTab:'全部',
+      tabData:[
+        "全部",
+        "待付款",
+        "待发货",
+        "待收货",
+        "已完成"
+      ],
+      orderData:[
+        {
+          name:'152345'
+        },
+        {
+          name:'152345'
+        },
+        {
+          name:'152345'
+        },
+        {
+          name:'152345'
+        },
+        {
+          name:'152345'
+        }
+      ]
+    };
+
+    computed = {
+        
+    };
+
+    methods = {
+       selectTab(item){
+          this.currentTab = item;
+       }
+    };
+
+    events = {
+     
+    };
+    onReachBottom() {
+       
+    };
+    onLoad() {
+       
+    }
+  }
+</script>
+<style>
+.tabActive{
+  color: red;
+  border-bottom: 2px solid red;
+}
+</style>

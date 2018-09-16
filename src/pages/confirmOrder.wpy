@@ -1,8 +1,8 @@
 
 <template>
-   <view class="page" style="background: #eee;">
-       <view style="display: flex;height: 200rpx;background: #fff;">
-          <view style="width: 15%;line-height: 200rpx;">
+   <view class="page" style="background: #f7f7f7;">
+       <view style="display: flex;height: 170rpx;background: #fff;">
+          <view style="width: 15%;line-height: 170rpx;">
             图标
           </view>
            <view style="width: 75%;padding: 15px 0 15px 0">
@@ -18,12 +18,18 @@
                 收货地址：深圳市南山区高新科技园北区
               </view>
           </view>
-           <view style="width: 10%;line-height: 200rpx;">
+           <view style="width: 10%;line-height: 170rpx;">
             图标
           </view>
+
        </view>
+        <view style="height:5px;background-image: url(../images/order/zhuangst.png); background-repeat: repeat-x;">
+          
+        </view>
+
+
        <view style="background: #fff;margin-top: 10px;">
-          <view style="padding: 10px;">
+          <view style="padding: 20rpx;">
             购物清单
           </view>
           <view>
@@ -49,7 +55,7 @@
               </view>
           </view>
        </view>
-       <view style="margin-top: 10px;"> 
+       <view style="margin-top: 10px;color:#383838"> 
           <view class="order-item">
             <view style="width: 50%;text-align: left;">
               支付方式
@@ -68,7 +74,7 @@
           </view>
        </view>
 
-        <view style="margin-top: 10px;">
+        <view style="margin-top: 10px;color:#383838">
           <view class="order-item">
             
              <view style="width: 50%;text-align: left;">
@@ -155,7 +161,7 @@
 <style lang="less">
 .price {
     color: #de0000;
-    font-size: 30rpx;
+    font-size: 40rpx;
     font-weight: 600;
 }
 .order-item{
@@ -179,7 +185,7 @@
     width: 240rpx;
     text-align: center;
     line-height: 100rpx;
-    background-color: #e64340;
+    background-color: #fd2c23;
     font-size: 32rpx;
     color: #ffffff;
   }
