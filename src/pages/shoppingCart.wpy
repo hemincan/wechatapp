@@ -23,12 +23,12 @@
                                  <icon class="icon_check" type="success" color="{{item.ischecked?'red':'rgb(153,153,153)'}}"  data-index="{{index}}" data-id="{{item.id}}" size="20" />
                                </view>
 
-                              <view style="margin: -0px 0 -0px 0rpx;width:180rpx;padding:15px;height:180rpx;" class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                              <view style="margin: -0px 0 -0px 0rpx;width:180rpx;padding:15px 15px 15px 5px;height:180rpx;" class="weui-media-box__hd weui-media-box__hd_in-appmsg">
                                   <image class="weui-media-box__thumb" src="{{thumLogo}}" />
                               </view>
                               <view class="weui-media-box__bd weui-media-box__bd_in-appmsg" style="margin-top:10px;margin-bottom:0px;">
-                                  <view class="" style="font-size:12px;height:100rpx;overflow:hidden;">{{item.name}}</view>
-                                  <view class="weui-media-box__desc" style="margin-top:20px;display:flex;">
+                                  <view class="" style="font-size:12px;height:100rpx;overflow:hidden;margin-top:5px;">{{item.name}}</view>
+                                  <view class="weui-media-box__desc" style="margin-top:15px;display:flex;">
                                     <view class="price">￥{{item.price}}</view>
                                     <view style="z-index: 100">
 
@@ -56,9 +56,9 @@
         </view>
         <view class="total" hidden="{{noSelect}}">
             <view>
-                合计：¥ {{totalPrice}}
+                合计：<span style="color:#de0000;font-size:15px;">¥ {{totalPrice}}</span>
             </view>
-            <view style="font-size: 25rpx;color: #ccc">
+            <view style="font-size: 10px;color: #ccc">
                 (不含运费：0.0)
             </view>
         </view>
@@ -77,7 +77,7 @@
 import swipeDelete from '../components/common/wepy-swipe-delete'
   export default class ShoppingCart extends wepy.page {
     config = {
-      navigationBarTitleText: '我的'
+      navigationBarTitleText: '购物车'
     };
     components = {
      swipeDelete
@@ -204,13 +204,13 @@ import swipeDelete from '../components/common/wepy-swipe-delete'
 .price {
     color: #de0000;
     font-size: 30rpx;
-    font-weight: 600;
+    font-weight: 500;
     width: 80%;
 }
 .icon_check {
      
       line-height:290rpx;
-      margin-left: 10rpx;
+      margin-left: 5rpx;
 }
 .top-title {
     text-align:center;
@@ -239,7 +239,7 @@ import swipeDelete from '../components/common/wepy-swipe-delete'
     z-index: 9999;
   }
   .jiesuan-box .to-pay-btn {
-    width: 240rpx;
+    width: 200rpx;
     text-align: center;
     line-height: 100rpx;
     background-color: #e64340;

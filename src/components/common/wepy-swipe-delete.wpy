@@ -81,7 +81,8 @@ export default class Counter extends wepy.component {
 
   data = {
     startX: null,
-    moveX: null
+    moveX: null,
+    touchDot:null
   }
 
   onLoad() {
@@ -92,6 +93,7 @@ export default class Counter extends wepy.component {
 
   methods = {
     ts(e) {
+      this.touchDot = e.touches[0].pageX;
       if (e.touches.length === 1) {
         this.startX = e.touches[0].clientX
         this.moveX = e.touches[0].clientX
@@ -99,8 +101,14 @@ export default class Counter extends wepy.component {
     },
     tm(e) {
       if (e.touches.length === 1) {
+        var touchMove = e.changedTouches[0].pageX;
+        //console.log(touchMove - this.touchDot)
+         if (touchMove - this.touchDot >= -60&&touchMove - this.touchDot <= 60){
+            return;
+         }
         // 手指起始点位置与移动期间的差值
         var distanceX = this.moveX - e.touches[0].clientX
+
         this.moveX = e.touches[0].clientX
 
         if ((this.swipeData.style - distanceX) < -140) {

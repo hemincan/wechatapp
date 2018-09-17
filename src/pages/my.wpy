@@ -26,7 +26,7 @@
           <view class="header_content">
             <image class="avatarUrl" src="../images/goods02.png"></image>
             <view style="color: #fff;">王大锤</view>
-            <view style="color: #fff;font-size:11px;">级别：v1.0  积分：0.0</view>
+            <view style="color: #fff;font-size:13px;">级别：v1.0  积分：0.0</view>
           </view>
         </view>
 
@@ -99,11 +99,11 @@
 
         </view>
 
-       <view style="background: #fff;margin-top: 10px;font-size:13px;">
+       <view style="background: #fff;margin-top: 10px;font-size:15px;">
             <view class="weui-cell" style="position: static;border-bottom:1px solid #f5f5f5">
                 <view class="weui-cell__bd">
-                    <view style="display: inline-block; vertical-align: middle">
-                         <image style="width: 40rpx;height: 40rpx;" src="../images/my/yhq.png" />我的优惠券
+                    <view style="display: inline-block; ">
+                         <image style="width: 50rpx;height: 50rpx;vertical-align:middle;" src="../images/my/yhq.png" />我的优惠券
                     </view>
                     
                 </view>
@@ -112,7 +112,7 @@
             <view class="weui-cell" style="position: static;border-bottom:1px solid #f5f5f5">
                 <view class="weui-cell__bd">
                     <view style="display: inline-block; vertical-align: middle">
-                        <image style="width: 40rpx;height: 40rpx;" src="../images/my/jf.png" />我的积分
+                        <image style="width: 50rpx;height: 50rpx;vertical-align:middle;" src="../images/my/jf.png" />我的积分
                     </view>
                     
                 </view>
@@ -121,7 +121,7 @@
             <view class="weui-cell" style="position: static;border-bottom:1px solid #f5f5f5">
                 <view class="weui-cell__bd">
                     <view style="display: inline-block; vertical-align: middle">
-                        <image style="width: 40rpx;height: 40rpx;" src="../images/my/dz.png" />收货地址
+                        <image style="width: 50rpx;height: 50rpx;vertical-align:middle;" src="../images/my/dz.png" />收货地址
                     </view>
                     
                 </view>
