@@ -1,0 +1,317 @@
+<style lang="less">
+body{background-color:#eee;}
+.list_box {
+  height: 150rpx;
+}
+
+.cartImg{
+     image {
+      width: 40rpx;
+      height:40rpx;
+    }
+    margin-left:100rpx;
+  }
+.address {
+  .list_box:last-child {
+    border-bottom: 1px solid #efefef;
+  }
+  .address_list {
+    justify-content: space-between;
+    height: 150rpx;
+    align-items: center;
+    padding:1rpx 13px 0rpx 20rpx;
+    border-top: 1px solid #efefef;
+    .title {
+      color: #000;
+    }
+    .arrow {
+      height: 150rpx;
+      line-height: 150rpx;
+      width: 150rpx;
+      text-align: center;
+      color: #9a9a9a;
+    }
+    .user_info {
+      color: #1a1a1a;
+      .name {
+        font-size: 20px;
+        font-weight:bold;
+      }
+      .phone{
+        float:right;
+        margin-right:10rpx;
+      }
+    }
+    .active_address {
+      margin-top: 20rpx;
+    }
+    .defult {
+      color: #ea4a3a;
+    }
+  }
+}
+
+.add_wrap {
+  display: block;
+  width: 100%;
+  left: 0;
+  right: 0;
+  position: absolute;
+  bottom: 20rpx;
+  margin: 0 auto;
+  text-align:center;
+  background-color:rgb(240, 25, 56);
+  height:80rpx;
+  line-height:80rpx;
+  margin-bottom:-7px;
+}
+
+.swipe-item-wrapper {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  margin-top: 2rpx;
+  .swipe-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 140rpx;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    &.actions-left {
+      left: 0;
+    }
+    &.actions-right {
+      right: 0;
+    }
+  }
+  .swipe-btn {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: white;
+    &.del {
+      background-color: rgb(244, 51, 60);
+    }
+    &.edit {
+      background-color: rgb(16, 142, 233);
+    }
+  }
+  .swipe-content {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  padding: 0 18rpx;
+  background-color: white;
+  .swipe-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 30rpx;
+    color: #666;
+  }
+  border-top:1px solid #eee;
+  }
+}
+</style>
+
+
+<template >
+  <view class="page"  style="background: #eeee,margin-left:6rpx;">
+    <repeat for="{{addressData}}" key="index" index="index" item="item">
+      <view class="address" style="background:#fff;font-family:Arial,Helvetica,sans-serif;font-size:100%;color:#4e4e4e;">
+        <view >
+          <view class="address_list" @tap="tapSelAddress" data-id="{{item.id}}">
+            <view class="title" style="padding:4px;">
+              <view class="user_info">
+                <text class="name">{{item.receiverName}}</text>
+                <text class="phone">{{item.mobile}}</text>
+              </view>
+              <view class="active_address" >
+                {{item.provinceName}} {{item.cityName}} {{item.areaName}} {{item.adressDetail}}
+              </view>
+            </view>
+          </view>
+
+          <view style="border-top:1px solid #eee;display: flex;flex-direction :row;font-size:16px;padding:1rpx 13px 0rpx 20rpx;padding-bottom:0px;">
+              <view style="margin-top:10rpx;" >
+                <icon class="icon_check" wx:if="{{item.isDef==1}}"  color="red" data-id="undefined" data-index="1" size="20" type="success"></icon>
+                <icon class="icon_check" wx:if="{{item.isDef!=1}}"  color="rgb(153,153,153)" data-id="undefined" data-index="1" size="20" type="success"></icon>
+                <text class="defult" > 默认地址</text>
+              </view>
+              <view style="display: flex;flex-direction :row;margin-top:10rpx;" >
+                <view  @tap.stop="edit" data-id="{{item.id}}" class="cartImg" style="width:20px;margin-top:9rpx;"><image src="{{cartImg}}"></image>
+                </view>
+                <view  @tap.stop="edit" data-id="{{item.id}}" >编辑</view>
+              </view>
+              <view style="display: flex;flex-direction :row;margin-top:10rpx;"  @tap.stop="DelItem" data-id="{{item.id}}">
+                <view class="cartImg" style="width:20px;margin-top:9rpx;" ><image src="{{cartImg}}"></image>
+                </view>
+                <view >删除</view>
+              </view>
+          </view>
+        </view>
+      </view>
+      <view style="height: 30rpx;background-color:#eeee;"></view>
+
+
+    </repeat>
+  </view>
+  <view class="add_wrap" > 
+
+    <navigator url="/pages/address_add"> 
+      <view class="button type_red" style="color:#ffff;"   @tap="add">新增收获地址</view>
+    </navigator>  
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+
+export default class addressList extends wepy.page {
+  props = {
+    addressList: {
+      default: [{
+        style: 0
+      }, {
+        style: 0
+      }],
+      type: Object
+    }
+  }
+  components = {
+
+  }
+
+  data = {
+    icon60: '',
+    icon20:'',
+    receiverInfo:{},
+    type: "",
+    cartImg:'../images/dele.png',
+    addressData:[
+      {
+        id:'11',
+        receiverName:'小灿灿',
+        mobile:'15277327641',
+        provinceName:'大灿灿',
+        cityName:'南宁',
+        areaName:'广西',
+        adressDetail:'清秀区麻村',
+        isDef:1
+      },
+      {
+        id:'11',
+        receiverName:'小灿灿',
+        mobile:'15277327641',
+        provinceName:'大灿灿',
+        cityName:'南宁',
+        areaName:'广西',
+        adressDetail:'清秀区麻村',
+        isDef:0
+      },
+      {
+        id:'11',
+        receiverName:'小灿灿',
+        mobile:'15277327641',
+        provinceName:'大灿灿',
+        cityName:'南宁',
+        areaName:'广西',
+        adressDetail:'清秀区麻村',
+        isDef:0
+      }
+    ],
+
+  }
+
+  async delUserAddress(id) {
+    let that = this;
+    let userSpecialInfo = wepy.getStorageSync(USER_SPECICAL_INFO) || {};
+    const json = await api.delUserAddress({
+      query: {
+        id: id,
+        type:2
+      }
+    });
+
+    if (json.data.code == 0) {
+      console.log("删除成功");
+      this.$emit('currentPage', 0);
+      this.$emit('refreshAddList', 'hehe');
+    } else {
+      tip.error(json.data.msg)
+    }
+    that.showLoading = false;
+  }
+  methods = {
+    add() {
+      //0 列表 1新增 2编辑
+      this.$emit('currentPage', 1);
+    },
+    edit(e) {
+      
+      var id = e.currentTarget.dataset.id;
+      //0 列表 1新增 2编辑
+      this.$emit('currentPage', 2,id);
+    },
+    //左滑删除
+    handleDelItem(itemData) {
+      this.delUserAddress(itemData.id);
+      console.log("左滑删除")
+      console.log(itemData.id)
+
+    },
+     //点击删除
+    DelItem(itemData) {
+      wx.showModal({title:'提示',content:'确认是否删除',success:function (res) {
+        // body...
+        if (res.confirm) {
+          //this.delUserAddress(itemData.id);
+          console.log("左滑删除")
+          //console.log(itemData.id)
+          wx.showModal({title:'提示',content:'编辑成功'});
+        }
+      }});
+
+    },
+
+    refreshList(val){
+      if (val==undefined) return;
+      console.log("val.....",val);
+      this.addressList = val;
+      this.$apply();
+    },
+
+    setOrgType (type) {
+      this.type=type;
+    },
+
+    tapSelAddress(e) {
+      if (this.type!="order") {
+        return;
+      }
+      var id = e.currentTarget.dataset.id;
+      console.log("id=="+id);
+      wepy.setStorageSync(ADDRESS_ID,id);
+      wepy.redirectTo({
+        url: "/pages/comfire_order?from=selAdd"
+      })
+    }
+  }
+
+  onLoad() {
+    let base64 = require('../images/base64');
+    this.icon20 = base64.icon20;
+    this.icon60 = base64.icon60;
+  }
+}
+
+</script>
