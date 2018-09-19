@@ -1,13 +1,92 @@
 
 <template>
-   <view class="page">
-           <swiper indicator-dots="true" autoplay="true" interval="5000" duration="500" indicator-active-color="#ffc452" indicator-color="#efefef" class="swiper">
-          <block wx:for="{{photoList}}" key="item" item="item" wx:key="key">
-            <swiper-item>
-              <image src="{{item.url}}" data-src="{{item.url}}" class="slide-image" @tap="previewImage" />
-            </swiper-item>
-          </block>
-        </swiper>
+   <view class="page" style="background:#f7f7f7;">
+      <view style="margin-bottom: 110rpx;width: 100%;">
+        <view style="">
+              <swiper indicator-dots="true" autoplay="true" interval="5000" duration="500" indicator-active-color="#f7f7f7" indicator-color="#f7f7f7" style="height:660rpx;">
+              <block wx:for="{{photoList}}" key="item" item="item" wx:key="key">
+                <swiper-item>
+                  <image src="{{item.url}}" data-src="{{item.url}}" class="slide-image" @tap="previewImage" />
+                </swiper-item>
+              </block>
+            </swiper>
+        </view>
+        <view style="background:#fff;padding:5px;">
+            <view style="display:flex;padding:20rpx">
+                <view style="width:20%;color:#f10000;">￥21321</view>
+                <view style="width:60%;color:#adadad;font-size:12px;margin-left:10px;">原价￥21321</view>
+                <view style="width:23%;color:#adadad;font-size:12px;">月销：10件</view>
+            </view>
+            <view  style="color:#313131;padding:20rpx;font-size:15px;">
+                这是商品的标题这是商品的标题这是商品的标题这是商品的标题这是商品的标题
+            </view>
+        </view>
+       
+        <view style="background:#fff;margin-top:20rpx;font-size:15px;">
+             <view class="weui-cell" style="position: static;height:70rpx">
+                <view class="weui-cell__bd">
+                    <view style="display: inline-block; vertical-align: middle;color:#787878;">
+                       
+                       商品规格
+                    </view>
+                    <view style="display: inline-block; vertical-align: middle;color:#323232;margin-left:20px;">
+                       
+                       大号
+                    </view>
+                </view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </view>
+             <view style="clear:both;"></view>
+             <view class="weui-cell" style="position: static;height:70rpx">
+                <view class="weui-cell__bd">
+                    <view style="display: inline-block; vertical-align: middle;color:#787878;">
+                        已选数量
+                    </view>
+                    <view style="display: inline-block; vertical-align: middle;color:#323232;margin-left:20px;">
+                       
+                       1.0件
+                    </view>
+                </view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </view>
+            <view style="height:50px;"></view>
+        </view>
+
+        <view style="bottom:0px;height:50px; position: fixed;display:flex;width:100%;background:#fff">
+            <view style="width:40%;display:flex;justify-content: space-around;font-size:10px;color:#adadad">
+                <view style="text-align:center;">
+                    <view>
+                      <image style="width:65rpx;height: 65rpx;" src="../images/nav/indexfoot.png"></image>
+                    </view>
+                     <view style="margin-top:-5px;">
+                    首页
+                    </view>
+                </view>
+                <view style="text-align:center;">
+                    <view>
+                       <image style="width:65rpx;height: 65rpx;" src="../images/nav/myfoot.png"></image>
+                     </view>
+                    <view style="margin-top:-5px;">
+                        我的
+                    </view>
+                </view>
+                <view style="text-align:center;">
+                    <view>
+                      <image style="width:65rpx;height: 65rpx;" src="../images/nav/gwcfoot.png"></image>
+                    </view>
+                    <view style="margin-top:-5px;">
+                      购物车
+                    </view>
+                </view>
+            </view>
+            <view style="width:30%;background:#df9f06;height:50px;text-align:center;color:#fff;line-height:50px">
+                加入购物车
+            </view>
+            <view style="width:30%;background:#e60a0a;height:50px;text-align:center;color:#fff;line-height:50px">
+                立刻购买
+            </view>
+        </view>
+      </view>   
     </view>
 </template>
 
@@ -25,16 +104,16 @@
     data = {
         photoList:[
             {
-                url:'/images/pic_article.png'
+                url:'../images/goods02.png'
             },
              {
-                url:'/images/pic_article.png'
+                url:'../images/goods02.png'
             },
              {
-                url:'/images/pic_article.png'
+                url:'../images/goods02.png'
             },
              {
-                url:'/images/pic_article.png'
+                url:'../images/goods02.png'
             }
         ]
     };
@@ -71,3 +150,10 @@
     }
   }
 </script>
+<style >
+  
+.slide-image {
+  width: 100%;
+  height: 100%;
+}
+</style>

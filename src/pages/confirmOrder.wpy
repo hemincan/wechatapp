@@ -1,61 +1,71 @@
 
 <template>
-   <view class="page" style="background: #eee;">
-       <view style="display: flex;height: 200rpx;background: #fff;">
-          <view style="width: 15%;line-height: 200rpx;">
-            图标
+   <view class="page" style="background: #f7f7f7;">
+       <view style="display: flex;height: 170rpx;background: #fff;">
+          <view style="width: 10%;line-height: 170rpx;">
+          
           </view>
-           <view style="width: 75%;padding: 15px 0 15px 0">
+           <view style="width: 85%;padding: 15px 0 15px 0">
               <view style="display: flex;">
-                <view style="font-size: 16px;font-weight: 700;">
+                <view style="font-size: 14px;font-weight: 600;width:60%;">
                   收货人：王大锤
                 </view>
-                <view>
+                <view style="font-size: 14px;">
                   18577351297
                 </view>
               </view>
-              <view style="font-size: 13px;color: #333">
+              <view style="font-size: 12px;color: #333;margin-top:20rpx;">
                 收货地址：深圳市南山区高新科技园北区
               </view>
           </view>
-           <view style="width: 10%;line-height: 200rpx;">
-            图标
+          <view style="width: 5%;line-height: 170rpx;">
+            <image style="width: 25rpx;height: 40rpx;vertical-align:middle;" src="../images/order/more.png" />
           </view>
+
        </view>
-       <view style="background: #fff;margin-top: 10px;">
-          <view style="padding: 10px;">
+        <view style="height:5px;background-image: url(../images/order/zhuangst.png); background-repeat: repeat-x;">
+          
+        </view>
+
+
+       <view style="background: #fff;margin-top: 10px;font-size: 14px;">
+          <view style="padding: 20rpx;border-bottom:2px solid #f7f7f7;;">
             购物清单
           </view>
           <view>
-              <view style="display: flex;height: 200rpx;">
+              <view style="display: flex;height: 200rpx;padding:20rpx;">
                 <view style="width: 30%">
-                   <image style="width: 100%;height: 100%;" src="../images/goods02.png" />
+                   <image style="width: 200rpx;height: 200rpx;" src="../images/goods02.png" />
                 </view>
-                 <view style="width: 75%;padding: 10px;">
+                 <view style="width: 100%;padding: 0 0 0 10px;">
                     <view>
-                      智能家居保障智能家居保障
+                      智能家居保障智能家居保障能家居保障能家居保障
                     </view>
-                    <view>
-                        <view class="price">￥127</view>
+                    <view style="line-height: 150rpx;">
+                        <view style="display:flex;">
+                             <view class="price" style="width:50%">￥127</view>
+                             <view style="width:50%;text-align:right;">x1</view>
+                        </view>
                     </view>
                 </view>
-                 <view style="width: 10%;line-height: 200rpx;">
-                  x1
-                </view>
-
              </view>
+             
              <view>
-                 <input></input>
+                 <view style="background:#f7f7f7;height:50rpx;border-radius:10px;padding:0 40rpx;margin: 30rpx 20rpx 0 20rpx">
+                    <input>选填：买家留言</input>
+                 </view>
+                 <view style="height:15px;"></view>
               </view>
           </view>
        </view>
-       <view style="margin-top: 10px;"> 
+       <view style="margin-top: 10px;color:#383838;font-size:14px;"> 
           <view class="order-item">
             <view style="width: 50%;text-align: left;">
               支付方式
             </view>
             <view style="width: 50%;text-align: right;">
-              货到付款
+              线下支付
+                <image style="width: 25rpx;height: 40rpx;vertical-align:middle;" src="../images/order/more.png" />
             </view>
           </view>
            <view class="order-item">
@@ -63,12 +73,13 @@
               配送方式
             </view>
             <view style="width: 50%;text-align: right;">
-              自提
+              送货上门
+                <image style="width: 25rpx;height: 40rpx;vertical-align:middle;" src="../images/order/more.png" />
             </view>
           </view>
        </view>
 
-        <view style="margin-top: 10px;">
+        <view style="margin-top: 10px;color:#383838;font-size:14px;">
           <view class="order-item">
             
              <view style="width: 50%;text-align: left;">
@@ -103,8 +114,8 @@
        </view>
 
 
-       <view class="jiesuan-box" >
-        <view style="line-height: 100rpx;display: flex;">
+       <view class="jiesuan-box;font-size:14px;" >
+        <view style="line-height: 100rpx;display: flex;margin-left:20rpx;">
             <view>合计：</view>
             <view  class="price" >¥ {{totalPrice}}</view>
         </view>
@@ -155,8 +166,8 @@
 <style lang="less">
 .price {
     color: #de0000;
-    font-size: 30rpx;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 500;
 }
 .order-item{
   padding:10px 10px 10px 10px;display: flex;
@@ -179,7 +190,7 @@
     width: 240rpx;
     text-align: center;
     line-height: 100rpx;
-    background-color: #e64340;
+    background-color: #fd2c23;
     font-size: 32rpx;
     color: #ffffff;
   }

@@ -26,10 +26,11 @@
 .price {
     color: #de0000;
     font-size: 30rpx;
-    font-weight: 600;
+    font-weight: 400;
     width: 80%;
 }
 .shop_item {
+
   padding: 0rpx 15rpx;
   background: #f7f7f7;
   display: flex;
@@ -48,7 +49,12 @@
  width: 80vw;
  background:#000;
 }
-
+.cartImg{
+     image {
+      width: 50rpx;
+      height:50rpx;
+    }
+  }
 .swiper_item {
  font-size: 25rpx;
  overflow: hidden;
@@ -66,13 +72,7 @@
       height: 345rpx;
     }
   }
-  .cartImg{
-     image {
-      width: 50rpx;
-      height:50rpx;
-    }
-    margin-left:180rpx;
-  }
+  
   .product_name {
     color: #1a1a1a;
     font-size: 28rpx;
@@ -147,6 +147,11 @@
     margin: 9rpx 10rpx;
     position: relative;
   }
+
+.tabActive{
+  color: red;
+  border-bottom: 2px solid red;
+}
 </style>
 <template>
    <view class="page">
@@ -171,21 +176,21 @@
                     </view>
                     <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
                 </view> -->
-                <view style="width:10%;background: #fff;" >
+                <!-- <view style="width:10%;background: #fff;" >
                   <navigator url='/pages/classify'>
                     <image style="width:  80rpx;height: 80rpx;" src="../images/icon_classify.png"></image>
                   </navigator>
-                </view>
-                <view style="width:82%;" class="top_search">
+                </view> -->
+                <view style="width:92%;" class="top_search">
                   <view class="search_read_only">
                     <navigator class="search_content" url="/pages/search">
                        <icon class="weui-icon-search" type="search" size="14"></icon>
-                      <view class="search_input">搜索商品</view>
+                      <view class="search_input">输入关键字</view>
                     </navigator>
                   </view>
                 </view>
                 <view style="width:10%;background: #fff;" @tap="shiftView">
-                     <image style="width:  80rpx;height: 80rpx;" src="../images/icon_classify.png"></image>
+                     <image style="width:  80rpx;height: 80rpx;" src="{{liebiaoicon}}"></image>
                   </navigator>
                 </view>
             </view>
@@ -194,12 +199,14 @@
             </view> -->
         </view>
         
-        <view class="weui-flex" style="background:#fff;margin-bottom:4px;border-top: 1px solid #ccc;border-bottom: 1px solid #ccc">
-          <!--  <repeat for="{{sortItem}}" key="index" index="index" item="item">
-             
-            
-            </repeat> -->
-             <view style="width: 25%;" >
+        <view class="weui-flex" style="background:#fff;margin-bottom:4px;border-top: 0px solid #ccc;border-bottom: 0px solid #ccc">
+          
+            <view style="width:100%;display:flex;justify-content: space-around;background:#fff;">
+               <repeat  for="{{classifyData}}" key="index" index="index" item="item" >
+                 <view @tap="selectTab({{item}})" class="{{currentTab==item?'tabActive':''}}" style="text-align:center;padding:5px 0 5px 0;font-size:15px;">{{item}}</view>
+                </repeat>
+            </view>
+            <!--  <view style="width: 25%;" >
                 <view style="height: 30rpx;line-height:30rpx ;border-right:1px solid #ccc;"  @tap="sortItemCick('综合')" class="{{ currentSelectSortItem == '综合' ? 'liBkgCor sort-item':'sort-item' }}">综合</view>
               </view>
 
@@ -216,10 +223,10 @@
                   </view>
                    <view style="margin-top: 20rpx;margin-left: -20rpx;">
                     <view class="arrow_up {{arrowType=='desc' ? 'arrow_up_red' : 'arrow_up_gray'}}"></view>
-                    <!-- 向下的三角形 -->
+                    
                     <view class="arrow_down {{arrowType=='asc' ? 'arrow_down_red' : 'arrow_down_gray'}} "></view>
                   </view>
-              </view>
+              </view> -->
         </view>
       
         <view class="page__bd">
@@ -229,7 +236,7 @@
 
                     <!-- <scroll-view scroll-y="true" class="swiper-item-box"> -->
                     <view wx:if="{{!normalView}}" class="shop_item" >
-                      <navigator class="list" wx:for="{{goodsData}}" wx:key="item" url="/pages/goods_detail?id={{item.id}}&purchasetype={{purchasetype}}&special={{special}}" style="margin-top: 30rpx">
+                      <navigator class="list" wx:for="{{goodsData}}" wx:key="item" url="/pages/goodsDetails?id={{item.id}}&purchasetype={{purchasetype}}&special={{special}}" style="margin-top: 30rpx">
                         <view class="image_box">
                           <image src="{{icon60}}"></image>
                         </view>
@@ -237,7 +244,7 @@
                           <view class="product_name" >{{item.name}}</view>
                           <view class="product_info">
                             <view class="price">￥{{item.price}}</view>
-                            <view class="cartImg" style="width:40px;"><image src="{{icon60}}"></image></view>
+                            <view class="cartImg"  @tap.stop="addToShopingCart({{item}})" ><image src="{{cartImg}}"></image></view>
                             <!-- <view class="cost_price">￥{{item.marketPrice}}</view>
                             <view class="sale_num">销量{{item.saleCount}}件</view> -->
                           </view>
@@ -258,7 +265,7 @@
                                 <view class="" style="font-size:14px;">{{item.name}}</view>
                                 <view class="weui-media-box__desc" style="margin-top:20px;display:flex;">
                                   <view class="price">￥{{item.price}}</view>
-                                  <view style="">加</view>
+                                  <view class="cartImg" @tap.stop="addToShopingCart({{item}})"><image  src="{{cartImg}}"></image></view>
                                 </view>
                             </view>
                         </navigator>
@@ -283,13 +290,26 @@
 
   export default class MallList extends wepy.page {
     config = {
-      navigationBarTitleText: '商品列表'
+      navigationBarTitleText: '全部商品'
     };
     components = {
      
     };
 
     data = {
+      currentTab:'全部',
+      classifyData:[
+        "全部",
+        "撒旦",
+        "撒旦",
+        "撒旦",
+        "撒旦",
+        "撒旦"
+      ],
+      liebiaoicon:'../images/malllist/libiaopre.png',
+       gridicon:'../images/malllist/libiao.png',
+       listicon:'../images/malllist/libiaopre.png',
+       cartImg:'../images/cart.png',
        normalView:true,
        inputShowed: false,
        inputVal: '',
@@ -389,6 +409,15 @@
         },
         shiftView(){
           this.normalView = !this.normalView;
+          if(this.liebiaoicon == this.gridicon){
+              this.liebiaoicon = this.listicon;
+          }else{
+             this.liebiaoicon = this.gridicon;
+          }
+          console.log(this.liebiaoicon)
+        },
+        addToShopingCart(item){
+          console.log(item)
         }
     };
 
