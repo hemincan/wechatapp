@@ -143,9 +143,8 @@ body{background-color:#eee;}
           </view>
 
           <view style="border-top:1px solid #eee;display: flex;flex-direction :row;font-size:16px;padding:1rpx 13px 0rpx 20rpx;padding-bottom:0px;">
-              <view style="margin-top:10rpx;" >
-                <icon class="icon_check" wx:if="{{item.isDef==1}}"  color="red" data-id="undefined" data-index="1" size="20" type="success"></icon>
-                <icon class="icon_check" wx:if="{{item.isDef!=1}}"  color="rgb(153,153,153)" data-id="undefined" data-index="1" size="20" type="success"></icon>
+              <view style="margin-top:10rpx;"  >
+                 <icon @tap.stop="selectAddress" data-id="{{item.id}}" class="icon_check" type="success" color="{{item.isDef?'red':'rgb(153,153,153)'}}"  data-index="{{index}}" size="20" />
                 <text class="defult" > 默认地址</text>
               </view>
               <view style="display: flex;flex-direction :row;margin-top:10rpx;" >
@@ -206,27 +205,27 @@ export default class addressList extends wepy.page {
         cityName:'南宁',
         areaName:'广西',
         adressDetail:'清秀区麻村',
-        isDef:1
+        isDef:true
       },
       {
-        id:'11',
+        id:'21',
         receiverName:'小灿灿',
         mobile:'15277327641',
         provinceName:'大灿灿',
         cityName:'南宁',
         areaName:'广西',
         adressDetail:'清秀区麻村',
-        isDef:0
+        isDef:false
       },
       {
-        id:'11',
+        id:'31',
         receiverName:'小灿灿',
         mobile:'15277327641',
         provinceName:'大灿灿',
         cityName:'南宁',
         areaName:'广西',
         adressDetail:'清秀区麻村',
-        isDef:0
+        isDef:false
       }
     ],
 
@@ -252,6 +251,20 @@ export default class addressList extends wepy.page {
     that.showLoading = false;
   }
   methods = {
+
+    selectAddress(e){
+      var id = e.currentTarget.dataset.id;;
+      //var index = parseInt(e.target.dataset.index);
+      //this.addressData[index].isDef =!this.addressData[index].isDef ;
+      for (var i = this.addressData.length - 1; i >= 0; i--) {
+        if (id!=this.addressData[i].id) {
+            this.addressData[i].isDef=false;
+        }else{
+          this.addressData[i].isDef=true;
+        }
+      }
+    },
+
     add() {
       //0 列表 1新增 2编辑
       this.$emit('currentPage', 1);
