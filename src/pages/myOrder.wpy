@@ -1,12 +1,14 @@
 
 <template>
-   <view class="page" style="background:#eee;position:relative;">
+   <view  style="background:#eee;position:relative;">
       <view style="display:flex;justify-content: space-around;background:#fff;">
        <repeat  for="{{tabData}}" key="index" index="index" item="item" >
          <view @tap="selectTab({{item}})" class="{{currentTab==item?'tabActive':''}}" style="text-align:center;padding:5px 0 5px 0;font-size:15px;">{{item}}</view>
         </repeat>
       </view>
-      <view style="position:absoulte;" bindtouchstart="touchStart" bindtouchend="touchEnd">
+
+      <view  bindtouchstart="touchStart" bindtouchend="touchEnd">
+        <view class="tabContent" style="position:absolute;width:100%;right:{{right}}px;">
           <repeat  for="{{orderData}}" key="index" index="index" item="item" >
               
                <view style="width:100%;background:#fff;margin-top:5px;padding:10px;">
@@ -46,8 +48,9 @@
                       </view>
                   </view>
                </view>
-            </repeat>
-        </view>
+          </repeat>
+         </view>
+      </view>
     </view>
 </template>
 
@@ -66,6 +69,8 @@
     };
 
     data = {
+      right:0,
+      left:0,
       currentTab:'全部',
       tabData:[
         "全部",
@@ -115,6 +120,11 @@
           // interval = setInterval(function () {
           //   time++;
           // }, 100);
+          // var _this = this;
+          // interval = setInterval(function () {
+          //   _this.right=500;
+          //   console.log(_this.right)
+          // }, 100);
         },
         // 触摸结束事件
         touchEnd (e) {
@@ -122,6 +132,12 @@
           // 向左滑动   
           console.log(time);
           if (touchMove - touchDot <= -40 && time < 10 && flag_hd == true) {
+            this.right=200;
+            // var _this = this;
+            // setTimeout(()=>{
+            //   console.log(_this.right)
+            //   _this.right=-100;
+            // },1500);
             // flag_hd = false;
             //执行切换页面的方法
             console.log("向右滑动");
@@ -136,6 +152,7 @@
           }
           // 向右滑动   
           if (touchMove - touchDot >= 40 && time < 10 && flag_hd == true) {
+             this.right=-200;
             // flag_hd = false;
             //执行切换页面的方法
             console.log("向左滑动");
@@ -148,7 +165,8 @@
             //   url: '../left/left'
             // })
           }
-          clearInterval(interval); // 清除setInterval
+          // clearInterval(interval); // 清除setInterval
+
           time = 0;
         }
     };
@@ -168,5 +186,11 @@
 .tabActive{
   color: red;
   border-bottom: 2px solid red;
+}
+.tabContent{
+transition: right 1s;
+-moz-transition: right 1s;  /* Firefox 4 */
+-webkit-transition: right 1s; /* Safari 和 Chrome */
+-o-transition: right 1s;  /* Opera */
 }
 </style>
