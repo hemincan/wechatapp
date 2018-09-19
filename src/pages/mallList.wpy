@@ -308,7 +308,7 @@
        //      name:'价格'
        //    }
        // ],
-       currentSelectSortItem:'综合',
+       currentSelectSortItem:'销量',
        goodsData:[
           {
             name:'专用自能锁 全铜新人人工智能优质全铜新人人工智能优质',

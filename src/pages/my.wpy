@@ -107,13 +107,17 @@
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
             </view>
             <view class="weui-cell" style="position: static;">
-                <view class="weui-cell__bd">
-                    <view style="display: inline-block; vertical-align: middle">
-                        <image style="width: 40rpx;height: 40rpx;" src="../images/my/dz.png" />收货地址
+                      
+                    <view class="weui-cell__bd">
+                         <navigator url="/pages/addressList"> 
+                            <view style="display: inline-block; vertical-align: middle">
+                                <image style="width: 40rpx;height: 40rpx;" src="../images/my/dz.png" />收货地址
+                            </view> 
+                        </navigator>  
                     </view>
-                    
-                </view>
-                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                  
+                   
             </view>
 
        </view>
