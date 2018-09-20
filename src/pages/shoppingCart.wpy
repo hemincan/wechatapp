@@ -268,7 +268,7 @@ import swipeDelete from '../components/common/wepy-swipe-delete'
   /*主容器*/
 .stepper {
   width:70px;
-  height:20px;
+  height:25px;
   margin: 0 0 0 0;
   border: 1px solid #ccc;
   border-radius: 3px;
@@ -278,7 +278,7 @@ import swipeDelete from '../components/common/wepy-swipe-delete'
 .stepper text {
   float: left;
   width: 19px;
-  line-height: 20px;
+  line-height: 25px;
   text-align: center;
 }
 /*数值*/
@@ -289,7 +289,7 @@ import swipeDelete from '../components/common/wepy-swipe-delete'
   margin: 0 auto;
   text-align: center;
   font-size: 14px;
-  color:#000;
+  color:#222;
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
 }

@@ -1,6 +1,7 @@
 
 <template>
    <view class="page" style="background: #f7f7f7;">
+     <navigator url="/pages/addressList">
        <view style="display: flex;height: 170rpx;background: #fff;">
           <view style="width: 10%;line-height: 170rpx;">
           
@@ -23,9 +24,10 @@
           </view>
 
        </view>
-        <view style="height:5px;background-image: url(../images/order/zhuangst.png); background-repeat: repeat-x;">
-          
-        </view>
+    </navigator>
+    <view style="height:5px;background-image: url(../images/order/zhuangst.png); background-repeat: repeat-x;">
+      
+    </view>
 
 
        <view style="background: #fff;margin-top: 10px;font-size: 14px;">
@@ -59,21 +61,21 @@
           </view>
        </view>
        <view style="margin-top: 10px;color:#383838;font-size:14px;"> 
-          <view class="order-item">
+          <view class="order-item" @tap.stop="openSelectPayWay">
             <view style="width: 50%;text-align: left;">
               支付方式
             </view>
             <view style="width: 50%;text-align: right;">
-              线下支付
+              {{payWay}}
                 <image style="width: 25rpx;height: 40rpx;vertical-align:middle;" src="../images/order/more.png" />
             </view>
           </view>
-           <view class="order-item">
+           <view class="order-item" @tap.stop="openSelectdeliverWay">
              <view style="width: 50%;text-align: left;">
               配送方式
             </view>
             <view style="width: 50%;text-align: right;">
-              送货上门
+              {{deliverWay}}
                 <image style="width: 25rpx;height: 40rpx;vertical-align:middle;" src="../images/order/more.png" />
             </view>
           </view>
@@ -141,7 +143,11 @@
     };
 
     data = {
-      totalPrice:1555
+      totalPrice:1555,
+      payWay:'在线支付',
+      payWayList:['在线支付', '货到付款'],
+      deliverWay:'送货上门',
+      deliverWayList:['送货上门'],
     };
 
     computed = {
@@ -149,7 +155,40 @@
     };
 
     methods = {
-       
+       openSelectPayWay(){
+          var _this = this;
+          wx.showActionSheet({
+              itemList:this.payWayList ,
+              success: function(res) {
+
+                 _this.payWay = _this.payWayList[res.tapIndex];
+                 _this.setData({
+                    payWay:_this.payWay
+                 });
+                 console.log(res.tapIndex)
+              },
+              fail: function(res) {  
+                console.log(res.errMsg)
+              }
+          })
+       },
+       openSelectdeliverWay(){
+          var _this = this;
+          wx.showActionSheet({
+              itemList:this.deliverWayList ,
+              success: function(res) {
+
+                 _this.deliverWay = _this.deliverWayList[res.tapIndex];
+                 _this.setData({
+                    deliverWay:_this.deliverWay
+                 });
+                 console.log(res.tapIndex)
+              },
+              fail: function(res) {  
+                console.log(res.errMsg)
+              }
+          })
+       }
     };
 
     events = {

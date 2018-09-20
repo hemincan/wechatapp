@@ -190,7 +190,7 @@
                   </view>
                 </view>
                 <view style="width:10%;background: #fff;" @tap="shiftView">
-                     <image style="width:  80rpx;height: 80rpx;" src="{{liebiaoicon}}"></image>
+                     <image style="width:  70rpx;height: 70rpx;margin-top:10rpx;" src="{{liebiaoicon}}"></image>
                   </navigator>
                 </view>
             </view>
@@ -200,12 +200,13 @@
         </view>
         
         <view class="weui-flex" style="background:#fff;margin-bottom:4px;border-top: 0px solid #ccc;border-bottom: 0px solid #ccc">
-          
-            <view style="width:100%;display:flex;justify-content: space-around;background:#fff;">
-               <repeat  for="{{classifyData}}" key="index" index="index" item="item" >
-                 <view @tap="selectTab({{item}})" class="{{currentTab==item?'tabActive':''}}" style="text-align:center;padding:5px 0 5px 0;font-size:15px;">{{item}}</view>
-                </repeat>
-            </view>
+          <scroll-view scroll-x scroll-with-animation="true" style="">
+              <view style="width:100%;display:flex;background:#fff;">
+                 <repeat  for="{{classifyData}}" key="index" index="index" item="item" >
+                   <view @tap="selectTab({{item}})" class="{{currentTab==item?'tabActive':''}}" style="text-align:center;padding:5px 0 5px 0;font-size:15px;min-width:60px;">{{item}}</view>
+                  </repeat>
+              </view>
+          </scroll-view>
             <!--  <view style="width: 25%;" >
                 <view style="height: 30rpx;line-height:30rpx ;border-right:1px solid #ccc;"  @tap="sortItemCick('综合')" class="{{ currentSelectSortItem == '综合' ? 'liBkgCor sort-item':'sort-item' }}">综合</view>
               </view>
@@ -229,7 +230,7 @@
               </view> -->
         </view>
       
-        <view class="page__bd">
+        <view class="page__bd" bindtouchstart="touchStart" bindtouchend="touchEnd" >
             <view class="weui-panel weui-panel_access;">
                 <!-- <view class="weui-panel__hd">图文组合列表</view> -->
                 <view class="weui-panel__bd" style="background:#efefef">
@@ -288,6 +289,10 @@
 <script>
   import wepy from 'wepy'
 
+  var time = 0;
+  var touchDot = 0;//触摸时的原点
+  var interval = "";
+  var flag_hd = true;
   export default class MallList extends wepy.page {
     config = {
       navigationBarTitleText: '全部商品'
@@ -300,12 +305,14 @@
       currentTab:'全部',
       classifyData:[
         "全部",
-        "撒旦",
-        "撒旦",
-        "撒旦",
-        "撒旦",
-        "撒旦"
+        "撒旦2",
+        "撒旦3",
+        "撒旦4",
+        "撒旦5",
+        "撒旦6",
+        "撒旦7",
       ],
+      currentTabIndex:0,
       liebiaoicon:'../images/malllist/libiaopre.png',
        gridicon:'../images/malllist/libiao.png',
        listicon:'../images/malllist/libiaopre.png',
@@ -390,6 +397,9 @@
     };
 
     methods = {
+      selectTab(item){
+        this.currentTab = item;
+      },
        showInput () {
             this.inputShowed = true;
         },
@@ -418,6 +428,61 @@
         },
         addToShopingCart(item){
           console.log(item)
+        },
+        touchStart (e) {
+          touchDot = e.touches[0].pageX; // 获取触摸时的原点
+          // 使用js计时器记录时间    
+          console.log("start")
+          // interval = setInterval(function () {
+          //   time++;
+          // }, 100);
+          // var _this = this;
+          // interval = setInterval(function () {
+          //   _this.right=500;
+          //   console.log(_this.right)
+          // }, 100);
+        },
+        // 触摸结束事件
+        touchEnd (e) {
+          var touchMove = e.changedTouches[0].pageX;
+          // 向左滑动   
+          console.log(time);
+          if (touchMove - touchDot <= -60 && time < 10 && flag_hd == true) {
+            // var _this = this;
+            // setTimeout(()=>{
+            //   console.log(_this.right)
+            //   _this.right=-0;
+            // },1000);
+            // flag_hd = false;
+            //执行切换页面的方法
+            console.log("向右滑动");
+            this.currentTab = this.classifyData[this.currentTabIndex+1];
+            this.currentTabIndex ++;
+            if(this.currentTabIndex>=this.classifyData.length-1){
+              this.currentTabIndex=this.classifyData.length-1
+            }
+            // wx.navigateTo({
+            //   url: '../right/right'
+            // })
+          }
+          // 向右滑动   
+          if (touchMove - touchDot >= 60 && time < 10 && flag_hd == true) {
+             
+            // flag_hd = false;
+            //执行切换页面的方法
+            console.log("向左滑动");
+             this.currentTab = this.classifyData[this.currentTabIndex-1];
+            this.currentTabIndex --;
+            if(this.currentTabIndex<=0){
+              this.currentTabIndex = 0;
+            }
+            // wx.navigateTo({
+            //   url: '../left/left'
+            // })
+          }
+          // clearInterval(interval); // 清除setInterval
+
+          time = 0;
         }
     };
 

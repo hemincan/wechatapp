@@ -34,15 +34,17 @@ body{background-color:#eee;}
     .user_info {
       color: #1a1a1a;
       .name {
-        font-size: 20px;
+        font-size: 15px;
         font-weight:bold;
       }
       .phone{
+        font-size: 15px;
         float:right;
         margin-right:10rpx;
       }
     }
     .active_address {
+      font-size: 14px;
       margin-top: 20rpx;
     }
     .defult {
@@ -56,8 +58,8 @@ body{background-color:#eee;}
   width: 100%;
   left: 0;
   right: 0;
-  position: absolute;
-  bottom: 20rpx;
+  position:fixed;
+  bottom: 10rpx;
   margin: 0 auto;
   text-align:center;
   background-color:rgb(240, 25, 56);
@@ -126,9 +128,9 @@ body{background-color:#eee;}
 
 
 <template >
-  <view class="page"  style="background: #eeee,margin-left:6rpx;">
+  <view class="page"  style="background: #eeee;min-height:{{windowHeight}}px;">
     <repeat for="{{addressData}}" key="index" index="index" item="item">
-      <view class="address" style="background:#fff;font-family:Arial,Helvetica,sans-serif;font-size:100%;color:#4e4e4e;">
+      <view class="address" style="margin-top:5px;background:#fff;font-family:Arial,Helvetica,sans-serif;font-size:100%;color:#4e4e4e;">
         <view >
           <view class="address_list" @tap="tapSelAddress" data-id="{{item.id}}">
             <view class="title" style="padding:4px;">
@@ -142,7 +144,7 @@ body{background-color:#eee;}
             </view>
           </view>
 
-          <view style="border-top:1px solid #eee;display: flex;flex-direction :row;font-size:16px;padding:1rpx 13px 0rpx 20rpx;padding-bottom:0px;">
+          <view style="border-top:1px solid #eee;display: flex;flex-direction :row;justify-content: space-around;font-size:14px;padding:1rpx 13px 0rpx 20rpx;padding-bottom:0px;">
               <view style="margin-top:10rpx;" >
                 <icon class="icon_check" wx:if="{{item.isDef==1}}"  color="red" data-id="undefined" data-index="1" size="20" type="success"></icon>
                 <icon class="icon_check" wx:if="{{item.isDef!=1}}"  color="rgb(153,153,153)" data-id="undefined" data-index="1" size="20" type="success"></icon>
@@ -161,7 +163,7 @@ body{background-color:#eee;}
           </view>
         </view>
       </view>
-      <view style="height: 30rpx;background-color:#eeee;"></view>
+      <!-- <view style="height: 10rpx;background-color:#eeee;"></view> -->
 
 
     </repeat>
@@ -192,6 +194,7 @@ export default class addressList extends wepy.page {
   }
 
   data = {
+    windowHeight:500,
     icon60: '',
     icon20:'',
     receiverInfo:{},
@@ -311,6 +314,14 @@ export default class addressList extends wepy.page {
     let base64 = require('../images/base64');
     this.icon20 = base64.icon20;
     this.icon60 = base64.icon60;
+
+        let _this = this;
+       //获取系统 的信息
+       wx.getSystemInfo({
+            success:function(res){
+                _this.windowHeight = res.screenHeight;
+            }
+       });
   }
 }
 
