@@ -53,7 +53,7 @@
         <view class="title">所在地区:</view>
         <view class="input">
           <view @tap="openAddressPicker">{{province ? province.name : '省'}} - {{city ? city.name : '市' }} - {{area ? area.name : '区' }}</view>
-          <areaPicker @areaArray.user="areaPickerArray"></areaPicker>
+          <areaPicker @areaArray2.user="areaPickerArray"></areaPicker>
         </view>
       </view>
       <view class="list_item">
@@ -71,7 +71,7 @@
       </view>
     </view>
     <view class="btn_box">
-      <button class="button type_red"  style="background-color:#f01938;color:#ffff;"formType="submit">保存</button>
+      <button class="button type_red"  style="background-color:#f01938;color:#ffff;" formType="submit">保存</button>
     </view>
   </form>
 </template>

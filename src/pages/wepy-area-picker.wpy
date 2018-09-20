@@ -108,6 +108,7 @@ export default class AreaPicker extends wepy.component {
         this.code.code = "";
       }
       this.$emit("areaArray", this.province, this.city, this.area)
+      this.$emit("areaArray2", this.province, this.city, this.area)
       this.$apply();
     },
     //滚动选择的时候触发事件
