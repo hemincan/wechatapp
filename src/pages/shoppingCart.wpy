@@ -283,13 +283,13 @@ import swipeDelete from '../components/common/wepy-swipe-delete'
 }
 /*数值*/
 .stepper input {
-  /*background: #000;*/
   width: 30px;
-  height: 20px;
+  height: 100%;
   float: left;
   margin: 0 auto;
   text-align: center;
-  font-size: 12px;
+  font-size: 14px;
+  color:#000;
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
 }

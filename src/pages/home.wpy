@@ -44,8 +44,8 @@
              </view>
            <view style="margin-top:-30rpx;">为你推荐 </view>
        </view>
-        <scroll-view scroll-y="true" class="swiper-item-box">
-            <view class="shop_item">
+        <view style="">
+            <!-- <view class="shop_item">
               <navigator class="list" wx:for="{{list}}" wx:key="item" url="/pages/goods_detail?id={{item.id}}&purchasetype={{purchasetype}}&special={{special}}">
                 <view class="image_box">
                   <image src="{{item.thumLogo}}"></image>
@@ -56,13 +56,28 @@
                     <view class="product_info">
                       <view class="price">￥{{item.price}}</view>
                       <view class="cartImg" style="width:40px;"><image src="{{cartImg}}"></image></view>
-                      <!-- <view class="cost_price">￥{{item.marketPrice}}</view>
-                      <view class="sale_num">销量{{item.saleCount}}件</view> -->
+                    
                     </view>
                 </view>
               </navigator>
-            </view>
-          </scroll-view>
+            </view> -->
+            <view  class="shop_item" >
+                      <navigator class="list" wx:for="{{list}}" wx:key="item" url="/pages/goodsDetails?id={{item.id}}&purchasetype={{purchasetype}}&special={{special}}" style="margin-top: 30rpx">
+                        <view class="image_box">
+                          <image src="{{item.thumLogo}}"></image>
+                        </view>
+                        <view class="goods">
+                          <view class="product_name" >{{item.name}}</view>
+                          <view class="product_info">
+                            <view class="price">￥{{item.price}}</view>
+                            <view class="cartImg"  @tap.stop="addToShopingCart({{item}})" ><image src="{{cartImg}}"></image></view>
+                            <!-- <view class="cost_price">￥{{item.marketPrice}}</view>
+                            <view class="sale_num">销量{{item.saleCount}}件</view> -->
+                          </view>
+                        </view>
+                      </navigator>
+                    </view>
+          </view>
     </view>
 </template>
 
@@ -155,7 +170,7 @@
   padding: 20rpx 20rpx;
 }
 .shop_item {
-  padding: 0rpx 15rpx;
+  padding: 0rpx 10rpx;
 
   display: flex;
   flex-wrap: wrap;

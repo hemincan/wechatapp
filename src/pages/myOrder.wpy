@@ -8,47 +8,98 @@
       </view>
 
       <view  bindtouchstart="touchStart" bindtouchend="touchEnd">
-        <view class="tabContent" style="position:absolute;width:100%;right:{{right}}px;">
-          <repeat  for="{{orderData}}" key="index" index="index" item="item" >
-              
-               <view style="width:100%;background:#fff;margin-top:5px;padding:10px;">
-                   <view style="display:flex;font-size:12px;height:30px;color:#8a8a8a;">
-                      <view style="width:40%;">订单号：1524221425</view>
-                      <view style="width:52%;text-align:right;">2018-9-10 13:23:43</view>
-                   </view>
-                  <view style="display:flex;">
-                      <view style="width:20%;">
-                           <image style="width:130rpx;height: 130rpx;" src="../images/goods02.png"></image>
-                      </view>
-                      <view style="width:60%;font-size:14px;">
-                          标题标题标题标题标题标题
-                      </view>
-                      <view style="width:15%;color:#666;font-size:12px;text-align:right;">
-                        ￥22211
-                      </view>
-                  </view>
-                  <view style="display:flex;height:30px;line-height:30px;">
-                      <view style="width:20%;color:red;font-size:12px;">
-                        专家没发货
-                      </view>
-                      <view style="width:40%;font-size:12px;color:#777;text-align:right;">
-                        共一件商品
-                      </view>
-                      <view style="margin-left:40rpx;;width:25%;color:#777;font-size:12px;">
-                        合计：￥1522
-                      </view>
-                  </view>
-                  <view style="display:flex;padding:0px;margin-top:5px;">
-                       <view style="width:50%;color:#444;color:#777;font-size:12px;">
-                         <!--   <image style="width:50rpx;height: 50rpx;" src="../images/goods02.png"></image>取消订单 -->
+         <view class="{{currentTab=='全部'?'tabContent':'tabContent'}}"  style="position:absolute;width:100%;min-height:{{windowHeight}}px;right:{{currentTab=='全部'?0:windowWidth*3+60}}px">
+              <repeat  for="{{orderData}}" key="index" index="index" item="item" >
+                  
+                   <view style="width:100%;background:#fff;margin-top:5px;padding:10px;">
+                       <view style="display:flex;font-size:12px;height:30px;color:#8a8a8a;">
+                          <view style="width:40%;">订单号：1524221425</view>
+                          <view style="width:52%;text-align:right;">2018-9-10 13:23:43</view>
                        </view>
-                      <view style="width:45%;text-align:center;">
-                          <view style="border:1px solid red;color:red;width:80px;height:20px;line-height:20px;border-radius:25px;font-size:12px;float:right;text-align:center;">  确认收货
+                      <view style="display:flex;">
+                          <view style="width:20%;">
+                               <image style="width:130rpx;height: 130rpx;" src="../images/goods02.png"></image>
+                          </view>
+                          <view style="width:60%;font-size:14px;">
+                              标题标题标题标题标题标题
+                          </view>
+                          <view style="width:15%;color:#666;font-size:12px;text-align:right;">
+                            ￥22211
                           </view>
                       </view>
-                  </view>
-               </view>
-          </repeat>
+                      <view style="display:flex;height:30px;line-height:30px;">
+                          <view style="width:20%;color:red;font-size:12px;">
+                            专家没发货
+                          </view>
+                          <view style="width:40%;font-size:12px;color:#777;text-align:right;">
+                            共一件商品
+                          </view>
+                          <view style="margin-left:40rpx;;width:25%;color:#777;font-size:12px;">
+                            合计：￥1522
+                          </view>
+                      </view>
+                      <view style="display:flex;padding:0px;margin-top:5px;">
+                           <view style="width:50%;color:#444;color:#777;font-size:12px;">
+                             <!--   <image style="width:50rpx;height: 50rpx;" src="../images/goods02.png"></image>取消订单 -->
+                           </view>
+                          <view style="width:45%;text-align:center;">
+                              <view style="border:1px solid red;color:red;width:80px;height:20px;line-height:20px;border-radius:25px;font-size:12px;float:right;text-align:center;">  确认收货
+                              </view>
+                          </view>
+                      </view>
+                   </view>
+              </repeat>
+         </view>
+          <view class="{{currentTab=='待付款'?'tabContent':'tabContent'}}"  style="position:absolute;width:100%; min-height:{{windowHeight}}px;right:{{currentTab=='待付款'?0:windowWidth*3+60}}px">
+               <repeat  for="{{orderData}}" key="index" index="index" item="item" >
+                  
+                   <view style="width:100%;background:#fff;margin-top:5px;padding:10px;">
+                       <view style="display:flex;font-size:12px;height:30px;color:#8a8a8a;">
+                          <view style="width:40%;">订单号：1524221425</view>
+                          <view style="width:52%;text-align:right;">2018-9-10 13:23:43</view>
+                       </view>
+                      <view style="display:flex;">
+                          <view style="width:20%;">
+                               <image style="width:130rpx;height: 130rpx;" src="../images/goods02.png"></image>
+                          </view>
+                          <view style="width:60%;font-size:14px;">
+                              标题标题标题标题标题标题
+                          </view>
+                          <view style="width:15%;color:#666;font-size:12px;text-align:right;">
+                            ￥22211
+                          </view>
+                      </view>
+                      <view style="display:flex;height:30px;line-height:30px;">
+                          <view style="width:20%;color:red;font-size:12px;">
+                            专家没发货
+                          </view>
+                          <view style="width:40%;font-size:12px;color:#777;text-align:right;">
+                            共一件商品
+                          </view>
+                          <view style="margin-left:40rpx;;width:25%;color:#777;font-size:12px;">
+                            合计：￥1522
+                          </view>
+                      </view>
+                      <view style="display:flex;padding:0px;margin-top:5px;">
+                           <view style="width:50%;color:#444;color:#777;font-size:12px;">
+                             <!--   <image style="width:50rpx;height: 50rpx;" src="../images/goods02.png"></image>取消订单 -->
+                           </view>
+                          <view style="width:45%;text-align:center;">
+                              <view style="border:1px solid red;color:red;width:80px;height:20px;line-height:20px;border-radius:25px;font-size:12px;float:right;text-align:center;">  确认收货
+                              </view>
+                          </view>
+                      </view>
+                   </view>
+              </repeat>
+         </view>
+         <view class="{{currentTab=='待发货'?'tabContent':'tabContent'}}"  style="position:absolute;width:100%; min-height:{{windowHeight}}px;right:{{currentTab=='待发货'?0:windowWidth*3+60}}px">
+               待发货
+         </view>
+         <view class="{{currentTab=='待收货'?'tabContent':'tabContent'}}"  style="position:absolute;width:100%; min-height:{{windowHeight}}px;right:{{currentTab=='待收货'?0:windowWidth*3+60}}px">
+               待收货
+         </view>
+         <view class="{{currentTab=='已完成'?'tabContent':'tabContent'}}"  style="position:absolute;width:100%; min-height:{{windowHeight}}px;right:{{currentTab=='已完成'?0:windowWidth*3+60}}px">
+               已完成
          </view>
       </view>
     </view>
@@ -96,7 +147,9 @@
         {
           name:'152345'
         }
-      ]
+      ],
+      windowWidth:500,
+      windowHeight:500
     };
 
     computed = {
@@ -131,13 +184,12 @@
           var touchMove = e.changedTouches[0].pageX;
           // 向左滑动   
           console.log(time);
-          if (touchMove - touchDot <= -40 && time < 10 && flag_hd == true) {
-            this.right=200;
+          if (touchMove - touchDot <= -60 && time < 10 && flag_hd == true) {
             // var _this = this;
             // setTimeout(()=>{
             //   console.log(_this.right)
-            //   _this.right=-100;
-            // },1500);
+            //   _this.right=-0;
+            // },1000);
             // flag_hd = false;
             //执行切换页面的方法
             console.log("向右滑动");
@@ -151,8 +203,8 @@
             // })
           }
           // 向右滑动   
-          if (touchMove - touchDot >= 40 && time < 10 && flag_hd == true) {
-             this.right=-200;
+          if (touchMove - touchDot >= 60 && time < 10 && flag_hd == true) {
+             
             // flag_hd = false;
             //执行切换页面的方法
             console.log("向左滑动");
@@ -178,7 +230,15 @@
        
     };
     onLoad() {
-       
+      let _this = this;
+       //获取系统 的信息
+       wx.getSystemInfo({
+            success:function(res){
+                _this.windowWidth = res.screenWidth;
+                _this.windowHeight = res.screenHeight;
+            
+            }
+       });
     }
   }
 </script>
@@ -188,9 +248,10 @@
   border-bottom: 2px solid red;
 }
 .tabContent{
-transition: right 1s;
--moz-transition: right 1s;  /* Firefox 4 */
--webkit-transition: right 1s; /* Safari 和 Chrome */
--o-transition: right 1s;  /* Opera */
+  transition: right 1s;
+  -moz-transition: right 1s;  /* Firefox 4 */
+  -webkit-transition: right 1s; /* Safari 和 Chrome */
+  -o-transition: right 1s;  /* Opera */
 }
+
 </style>
