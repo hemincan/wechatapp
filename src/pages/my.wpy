@@ -118,17 +118,20 @@
                 </view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
             </view>
-            <view class="weui-cell" style="position: static;border-bottom:1px solid #f5f5f5">
-                <view class="weui-cell__bd">
-                    <view style="display: inline-block; vertical-align: middle">
-                        <image style="width: 50rpx;height: 50rpx;vertical-align:middle;" src="../images/my/dz.png" />收货地址
-                    </view>
-                    
+            <navigator url="/pages/addressList">
+                <view class="weui-cell" style="position: static;border-bottom:1px solid #f5f5f5">
+                   
+                        <view class="weui-cell__bd">
+                            <view style="display: inline-block; vertical-align: middle">
+                                <image style="width: 50rpx;height: 50rpx;vertical-align:middle;" src="../images/my/dz.png" />收货地址
+                            </view>
+                            
+                        </view>
+                        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                     
                 </view>
-                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-            </view>
-
-       </view>
+            </navigator>
+        </view>
     </view>
 </template>
 

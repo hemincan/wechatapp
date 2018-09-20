@@ -64,10 +64,8 @@ export default class extends wepy.app {
       'pages/goodsDetails',
       'pages/classify',
       'pages/confirmOrder',
-
       'pages/addressList',
       'pages/address_add',
-
       'pages/myOrder'
 
       

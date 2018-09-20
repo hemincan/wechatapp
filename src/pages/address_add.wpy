@@ -53,7 +53,7 @@
         <view class="title">所在地区:</view>
         <view class="input">
           <view @tap="openAddressPicker">{{province ? province.name : '省'}} - {{city ? city.name : '市' }} - {{area ? area.name : '区' }}</view>
-          <areaPicker @areaArray.user="areaPickerArray"></areaPicker>
+          <areaPicker @areaArray2.user="areaPickerArray"></areaPicker>
         </view>
       </view>
       <view class="list_item">
@@ -65,13 +65,13 @@
       <view class="list_item" style="background-color:#eeee;padding-top:0rpx;"></view>
       <view class="list_item">
         <view class="title">设置默认地址:</view>
-        <view class="input tr" style="text-align:right;" @tap="changeCheckBoxState">
-          <icon type="success" size="20" color="{{isDefult? 'red':'#999'}}" />
+        <view class="input tr" style="text-align:right;">
+          <icon type="success" @tap.stop="changeCheckBoxState" data-id="{{isDefult}}" size="20" data-index="{{index}}"  color="{{isDefult? 'red':'rgb(153,153,153)'}}" />
         </view>
       </view>
     </view>
     <view class="btn_box">
-      <button class="button type_red"  style="background-color:#f01938;color:#ffff;"formType="submit">保存</button>
+      <button class="button type_red"  style="background-color:#f01938;color:#ffff;" formType="submit">保存</button>
     </view>
   </form>
 </template>
@@ -83,7 +83,7 @@ import {
   USER_SPECICAL_INFO
 } from '@/utils/constant';
 import AreaPicker from "./wepy-area-picker"
-export default class AddressAdd extends wepy.component {
+export default class AddressAdd extends wepy.page {
   data = {
     isDefult: false,
     province: '',
@@ -126,7 +126,8 @@ export default class AddressAdd extends wepy.component {
     that.showLoading = false;
   }
   methods = {
-    changeCheckBoxState() {
+    changeCheckBoxState(e) {
+      console.log("左滑删除"+this.isDefult)
       this.isDefult = !this.isDefult;
     },
     up() {
