@@ -14,7 +14,7 @@
         <view style="background:#fff;padding:5px;">
             <view style="display:flex;padding:20rpx">
                 <view style="width:20%;color:#f10000;">￥21321</view>
-                <view style="width:60%;color:#adadad;font-size:12px;margin-left:10px;">原价￥21321</view>
+                <view style="width:60%;color:#adadad;font-size:12px;margin-left:10px;text-decoration:line-through;">原价￥21321</view>
                 <view style="width:23%;color:#adadad;font-size:12px;">月销：10件</view>
             </view>
             <view  style="color:#313131;padding:20rpx;font-size:15px;">

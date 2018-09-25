@@ -1,13 +1,13 @@
 
 <template>
-   <view  style="background:#eee;position:relative;">
-      <view style="display:flex;justify-content: space-around;background:#fff;">
-       <repeat  for="{{tabData}}" key="index" index="index" item="item" >
-         <view @tap="selectTab({{item}})" class="{{currentTab==item?'tabActive':''}}" style="text-align:center;padding:5px 0 5px 0;font-size:15px;">{{item}}</view>
-        </repeat>
+   <view  style="">
+      <view style="display:flex;justify-content: space-around;background:#fff;width:100%;position:fixed;top:0px;z-index:500">
+         <repeat  for="{{tabData}}" key="index" index="index" item="item" >
+           <view @tap="selectTab({{item}})" class="{{currentTab==item?'tabActive':''}}" style="height:25px;text-align:center;padding:5px 0 5px 0;font-size:15px;">{{item}}</view>
+          </repeat>
       </view>
 
-      <view  bindtouchstart="touchStart" bindtouchend="touchEnd">
+      <view style="margin-top:30px;"   bindtouchstart="touchStart" bindtouchend="touchEnd">
          <view class="{{currentTab=='全部'?'tabContent':'tabContent'}}"  style="position:absolute;width:100%;min-height:{{windowHeight}}px;right:{{currentTab=='全部'?0:windowWidth*3+60}}px">
               <repeat  for="{{orderData}}" key="index" index="index" item="item" >
                   
@@ -248,6 +248,7 @@
   border-bottom: 2px solid red;
 }
 .tabContent{
+  background: #f5f5f5;
   transition: right 1s;
   -moz-transition: right 1s;  /* Firefox 4 */
   -webkit-transition: right 1s; /* Safari 和 Chrome */
